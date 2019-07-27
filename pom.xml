@@ -40,6 +40,18 @@ limitations under the License.
       <url>https://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
+  <distributionManagement>
+    <repository>
+      <id>central</id>
+      <name>dbis-internal-local</name>
+      <url>https://artifactory.dmi.unibas.ch:443/dbis-internal-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>dbis-internal-local</name>
+      <url>https://artifactory.dmi.unibas.ch:443/dbis-internal-local</url>
+    </snapshotRepository>
+  </distributionManagement>
   <properties>
     <!-- Ensure that source and target version are overridden from base ASF POM.
          This is also used by forbiddenapis to ensure correct signatures are loaded. -->
