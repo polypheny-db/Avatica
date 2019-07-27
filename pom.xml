@@ -26,8 +26,8 @@ limitations under the License.
   <artifactId>avatica-parent</artifactId>
   <packaging>pom</packaging>
   <version>1.16.0-POLYPHENYDB</version>
-  <name>Apache Calcite Avatica Project</name>
-  <description>Avatica is a JDBC driver framework which is a part of Apache Calcite</description>
+  <name>Avatica for Polypheny-DB</name>
+  <description>This is a fork of Avatica containing Polypheny-DB specific adjustments.</description>
   <url>https://calcite.apache.org/avatica</url>
   <inceptionYear>2012</inceptionYear>
   <organization>
@@ -40,15 +40,6 @@ limitations under the License.
       <url>https://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
-  <mailingLists>
-    <mailingList>
-      <name>Apache Calcite developers list</name>
-      <subscribe>dev-subscribe@calcite.apache.org</subscribe>
-      <unsubscribe>dev-unsubscribe@calcite.apache.org</unsubscribe>
-      <post>dev@calcite.apache.org</post>
-      <archive>https://lists.apache.org/list.html?dev@calcite.apache.org</archive>
-    </mailingList>
-  </mailingLists>
   <properties>
     <!-- Ensure that source and target version are overridden from base ASF POM.
          This is also used by forbiddenapis to ensure correct signatures are loaded. -->
@@ -109,18 +100,14 @@ limitations under the License.
     <spotbugs.version>3.1.11</spotbugs.version>
     <spotbugs-maven-plugin.version>3.1.10</spotbugs-maven-plugin.version>
   </properties>
-  <issueManagement>
-    <system>Jira</system>
-    <url>https://issues.apache.org/jira/browse/CALCITE</url>
-  </issueManagement>
   <ciManagement>
     <system>Apache Jenkins</system>
-    <url>https://builds.apache.org/job/Calcite-Avatica-Master/</url>
+    <url>https://jenkins.dmi.unibas.ch/job/Avatica/</url>
   </ciManagement>
   <scm>
-    <connection>scm:git:https://gitbox.apache.org/repos/asf/calcite-avatica.git</connection>
-    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/calcite-avatica.git</developerConnection>
-    <url>https://github.com/apache/calcite-avatica</url>
+    <connection>scm:git:https://github.com/polypheny-db/Avatica.git</connection>
+    <developerConnection>scm:git:https://github.com/polypheny-db/Avatica.git</developerConnection>
+    <url>https://github.com/polypheny-db/Avatica</url>
     <tag>HEAD</tag>
   </scm>
   <modules>
