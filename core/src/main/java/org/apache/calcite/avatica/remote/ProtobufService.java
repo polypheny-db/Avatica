@@ -57,6 +57,10 @@ public abstract class ProtobufService extends AbstractService {
     return finagle((ResultSetResponse) _apply(request));
   }
 
+  @Override public ResultSetResponse apply(PrimaryKeysRequest request) {
+    return finagle((ResultSetResponse) _apply(request));
+  }
+
   @Override public PrepareResponse apply(PrepareRequest request) {
     return finagle((PrepareResponse) _apply(request));
   }

@@ -187,6 +187,17 @@ public class LocalService implements Service {
     return toResponse(resultSet);
   }
 
+  public ResultSetResponse apply(PrimaryKeysRequest request) {
+    final Meta.ConnectionHandle ch =
+            new Meta.ConnectionHandle(request.connectionId);
+    final Meta.MetaResultSet resultSet =
+            meta.getPrimaryKeys(ch,
+                    request.catalog,
+                    request.schema,
+                    request.tableName);
+    return toResponse(resultSet);
+  }
+
   public PrepareResponse apply(PrepareRequest request) {
     try (final Context ignore = prepareTimer.start()) {
       final Meta.ConnectionHandle ch =

@@ -32,6 +32,7 @@ import org.apache.calcite.avatica.proto.Requests.OpenConnectionRequest;
 import org.apache.calcite.avatica.proto.Requests.PrepareAndExecuteBatchRequest;
 import org.apache.calcite.avatica.proto.Requests.PrepareAndExecuteRequest;
 import org.apache.calcite.avatica.proto.Requests.PrepareRequest;
+import org.apache.calcite.avatica.proto.Requests.PrimaryKeysRequest;
 import org.apache.calcite.avatica.proto.Requests.RollbackRequest;
 import org.apache.calcite.avatica.proto.Requests.SchemasRequest;
 import org.apache.calcite.avatica.proto.Requests.SyncResultsRequest;
@@ -176,6 +177,8 @@ public class ProtobufTranslationImpl implements ProtobufTranslation {
         new RequestTranslator(TableTypesRequest.parser(), new Service.TableTypesRequest()));
     reqParsers.put(TypeInfoRequest.class.getName(),
         new RequestTranslator(TypeInfoRequest.parser(), new Service.TypeInfoRequest()));
+    reqParsers.put(PrimaryKeysRequest.class.getName(),
+        new RequestTranslator(PrimaryKeysRequest.parser(), new Service.PrimaryKeysRequest()));
     reqParsers.put(ExecuteRequest.class.getName(),
         new RequestTranslator(ExecuteRequest.parser(), new Service.ExecuteRequest()));
     reqParsers.put(SyncResultsRequest.class.getName(),
@@ -263,6 +266,7 @@ public class ProtobufTranslationImpl implements ProtobufTranslation {
     messageClasses.add(TableTypesRequest.class);
     messageClasses.add(TablesRequest.class);
     messageClasses.add(TypeInfoRequest.class);
+    messageClasses.add(PrimaryKeysRequest.class);
     messageClasses.add(PrepareAndExecuteBatchRequest.class);
     messageClasses.add(ExecuteBatchRequest.class);
 

@@ -119,6 +119,14 @@ public abstract class JsonService extends AbstractService {
     }
   }
 
+  public ResultSetResponse apply(PrimaryKeysRequest request) {
+    try {
+      return finagle(decode(apply(encode(request)), ResultSetResponse.class));
+    } catch (IOException e) {
+      throw handle(e);
+    }
+  }
+
   public PrepareResponse apply(PrepareRequest request) {
     try {
       return finagle(decode(apply(encode(request)), PrepareResponse.class));

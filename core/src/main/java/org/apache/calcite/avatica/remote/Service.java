@@ -23,6 +23,7 @@ import org.apache.calcite.avatica.AvaticaUtils;
 import org.apache.calcite.avatica.BuiltInConnectionProperty;
 import org.apache.calcite.avatica.ConnectionPropertiesImpl;
 import org.apache.calcite.avatica.Meta;
+import org.apache.calcite.avatica.Meta.ConnectionHandle;
 import org.apache.calcite.avatica.QueryState;
 import org.apache.calcite.avatica.proto.Common;
 import org.apache.calcite.avatica.proto.Requests;
@@ -63,6 +64,7 @@ public interface Service {
   ResultSetResponse apply(TableTypesRequest request);
   ResultSetResponse apply(TypeInfoRequest request);
   ResultSetResponse apply(ColumnsRequest request);
+  ResultSetResponse apply(PrimaryKeysRequest request);
   PrepareResponse apply(PrepareRequest request);
   ExecuteResponse apply(ExecuteRequest request);
   ExecuteResponse apply(PrepareAndExecuteRequest request);
@@ -124,6 +126,7 @@ public interface Service {
       @JsonSubTypes.Type(value = TableTypesRequest.class, name = "getTableTypes"),
       @JsonSubTypes.Type(value = TypeInfoRequest.class, name = "getTypeInfo"),
       @JsonSubTypes.Type(value = ColumnsRequest.class, name = "getColumns"),
+      @JsonSubTypes.Type(value = PrimaryKeysRequest.class, name = "getPrimaryKeys"),
       @JsonSubTypes.Type(value = ExecuteRequest.class, name = "execute"),
       @JsonSubTypes.Type(value = PrepareRequest.class, name = "prepare"),
       @JsonSubTypes.Type(value = PrepareAndExecuteRequest.class,
@@ -731,6 +734,112 @@ public interface Service {
       return o == this
           || o instanceof TypeInfoRequest
           && Objects.equals(connectionId, ((TypeInfoRequest) o).connectionId);
+    }
+  }
+
+  /** Request for
+   * {@link Meta#getPrimaryKeys(ConnectionHandle, String, String, String)}
+   */
+  class PrimaryKeysRequest extends Request {
+    private static final FieldDescriptor CONNECTION_ID_DESCRIPTOR = Requests.PrimaryKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.PrimaryKeysRequest.CONNECTION_ID_FIELD_NUMBER);
+    private static final FieldDescriptor CATALOG_DESCRIPTOR = Requests.PrimaryKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.PrimaryKeysRequest.CATALOG_FIELD_NUMBER);
+    private static final FieldDescriptor SCHEMA_DESCRIPTOR = Requests.PrimaryKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.PrimaryKeysRequest.SCHEMA_FIELD_NUMBER);
+    private static final FieldDescriptor TABLE_NAME_DESCRIPTOR = Requests.PrimaryKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.PrimaryKeysRequest.TABLE_NAME_FIELD_NUMBER);
+
+    public final String connectionId;
+    public final String catalog;
+    public final String schema;
+    public final String tableName;
+
+    PrimaryKeysRequest() {
+      connectionId = null;
+      catalog = null;
+      schema = null;
+      tableName = null;
+    }
+
+    @JsonCreator
+    public PrimaryKeysRequest(@JsonProperty("connectionId") String connectionId,
+            @JsonProperty("catalog") String catalog,
+            @JsonProperty("schema") String schema,
+            @JsonProperty("tableName") String tableName) {
+      this.connectionId = connectionId;
+      this.catalog = catalog;
+      this.schema = schema;
+      this.tableName = tableName;
+    }
+
+    @Override Response accept(Service service) {
+      return service.apply(this);
+    }
+
+    @Override Request deserialize(Message genericMsg) {
+      final Requests.PrimaryKeysRequest msg =
+              ProtobufService.castProtobufMessage(genericMsg, Requests.PrimaryKeysRequest.class);
+
+      String connectionId = null;
+      if (msg.hasField(CONNECTION_ID_DESCRIPTOR)) {
+        connectionId = msg.getConnectionId();
+      }
+
+      String catalog = null;
+      if (msg.hasField(CATALOG_DESCRIPTOR)) {
+        catalog = msg.getCatalog();
+      }
+
+      String schema = null;
+      if (msg.hasField(SCHEMA_DESCRIPTOR)) {
+        schema = msg.getSchema();
+      }
+
+      String tableName = null;
+      if (msg.hasField(TABLE_NAME_DESCRIPTOR)) {
+        tableName = msg.getTableName();
+      }
+
+      return new PrimaryKeysRequest(connectionId, catalog, schema, tableName);
+    }
+
+    @Override Requests.PrimaryKeysRequest serialize() {
+      Requests.PrimaryKeysRequest.Builder builder =
+              Requests.PrimaryKeysRequest.newBuilder();
+
+      if (null != connectionId) {
+        builder.setConnectionId(connectionId);
+      }
+      if (null != catalog) {
+        builder.setCatalog(catalog);
+      }
+      if (null != schema) {
+        builder.setSchema(schema);
+      }
+      if (null != tableName) {
+        builder.setTableName(tableName);
+      }
+
+      return builder.build();
+    }
+
+    @Override public int hashCode() {
+      int result = 1;
+      result = p(result, connectionId);
+      result = p(result, catalog);
+      result = p(result, schema);
+      result = p(result, tableName);
+      return result;
+    }
+
+    @Override public boolean equals(Object o) {
+      return o == this
+              || o instanceof PrimaryKeysRequest
+              && Objects.equals(connectionId, ((PrimaryKeysRequest) o).connectionId)
+              && Objects.equals(catalog, ((PrimaryKeysRequest) o).catalog)
+              && Objects.equals(schema, ((PrimaryKeysRequest) o).schema)
+              && Objects.equals(tableName, ((PrimaryKeysRequest) o).tableName);
     }
   }
 
