@@ -76,6 +76,10 @@ public class JsonHandlerTest {
       return null;
     }
 
+    @Override public ResultSetResponse apply(PrimaryKeysRequest request) {
+      return null;
+    }
+
     @Override public PrepareResponse apply(PrepareRequest request) {
       return null;
     }
