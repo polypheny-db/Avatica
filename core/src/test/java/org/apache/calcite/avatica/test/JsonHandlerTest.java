@@ -80,6 +80,18 @@ public class JsonHandlerTest {
       return null;
     }
 
+    @Override public ResultSetResponse apply(ImportedKeysRequest request) {
+      return null;
+    }
+
+    @Override public ResultSetResponse apply(ExportedKeysRequest request) {
+      return null;
+    }
+
+    @Override public ResultSetResponse apply(IndexInfoRequest request) {
+      return null;
+    }
+
     @Override public PrepareResponse apply(PrepareRequest request) {
       return null;
     }

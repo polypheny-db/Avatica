@@ -5481,7 +5481,7 @@ public final class Requests {
   }
   /**
    * <pre>
-   * Request for Request for Meta#getrimaryKeys(String, String, String)
+   * Request for Request for Meta#getPrimaryKeys(String, String, String)
    * </pre>
    *
    * Protobuf type {@code PrimaryKeysRequest}
@@ -5905,7 +5905,7 @@ public final class Requests {
     }
     /**
      * <pre>
-     * Request for Request for Meta#getrimaryKeys(String, String, String)
+     * Request for Request for Meta#getPrimaryKeys(String, String, String)
      * </pre>
      *
      * Protobuf type {@code PrimaryKeysRequest}
@@ -6399,6 +6399,3041 @@ public final class Requests {
 
     @java.lang.Override
     public org.apache.calcite.avatica.proto.Requests.PrimaryKeysRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ImportedKeysRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ImportedKeysRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    java.lang.String getCatalog();
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getCatalogBytes();
+
+    /**
+     * <code>string schema = 2;</code>
+     */
+    java.lang.String getSchema();
+    /**
+     * <code>string schema = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSchemaBytes();
+
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    java.lang.String getTableName();
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTableNameBytes();
+
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    java.lang.String getConnectionId();
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getConnectionIdBytes();
+  }
+  /**
+   * <pre>
+   * Request for Request for Meta#getImportedKeys(String, String, String)
+   * </pre>
+   *
+   * Protobuf type {@code ImportedKeysRequest}
+   */
+  public  static final class ImportedKeysRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ImportedKeysRequest)
+      ImportedKeysRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ImportedKeysRequest.newBuilder() to construct.
+    private ImportedKeysRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ImportedKeysRequest() {
+      catalog_ = "";
+      schema_ = "";
+      tableName_ = "";
+      connectionId_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ImportedKeysRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              catalog_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              schema_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              tableName_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              connectionId_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.apache.calcite.avatica.proto.Requests.internal_static_ImportedKeysRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.apache.calcite.avatica.proto.Requests.internal_static_ImportedKeysRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest.class, org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest.Builder.class);
+    }
+
+    public static final int CATALOG_FIELD_NUMBER = 1;
+    private volatile java.lang.Object catalog_;
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    public java.lang.String getCatalog() {
+      java.lang.Object ref = catalog_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        catalog_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCatalogBytes() {
+      java.lang.Object ref = catalog_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        catalog_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SCHEMA_FIELD_NUMBER = 2;
+    private volatile java.lang.Object schema_;
+    /**
+     * <code>string schema = 2;</code>
+     */
+    public java.lang.String getSchema() {
+      java.lang.Object ref = schema_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        schema_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string schema = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSchemaBytes() {
+      java.lang.Object ref = schema_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        schema_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TABLE_NAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object tableName_;
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    public java.lang.String getTableName() {
+      java.lang.Object ref = tableName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tableName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTableNameBytes() {
+      java.lang.Object ref = tableName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tableName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONNECTION_ID_FIELD_NUMBER = 4;
+    private volatile java.lang.Object connectionId_;
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    public java.lang.String getConnectionId() {
+      java.lang.Object ref = connectionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        connectionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConnectionIdBytes() {
+      java.lang.Object ref = connectionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        connectionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getCatalogBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, catalog_);
+      }
+      if (!getSchemaBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, schema_);
+      }
+      if (!getTableNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, tableName_);
+      }
+      if (!getConnectionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, connectionId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getCatalogBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, catalog_);
+      }
+      if (!getSchemaBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, schema_);
+      }
+      if (!getTableNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, tableName_);
+      }
+      if (!getConnectionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, connectionId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest)) {
+        return super.equals(obj);
+      }
+      org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest other = (org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest) obj;
+
+      boolean result = true;
+      result = result && getCatalog()
+          .equals(other.getCatalog());
+      result = result && getSchema()
+          .equals(other.getSchema());
+      result = result && getTableName()
+          .equals(other.getTableName());
+      result = result && getConnectionId()
+          .equals(other.getConnectionId());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CATALOG_FIELD_NUMBER;
+      hash = (53 * hash) + getCatalog().hashCode();
+      hash = (37 * hash) + SCHEMA_FIELD_NUMBER;
+      hash = (53 * hash) + getSchema().hashCode();
+      hash = (37 * hash) + TABLE_NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getTableName().hashCode();
+      hash = (37 * hash) + CONNECTION_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getConnectionId().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Request for Request for Meta#getImportedKeys(String, String, String)
+     * </pre>
+     *
+     * Protobuf type {@code ImportedKeysRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ImportedKeysRequest)
+        org.apache.calcite.avatica.proto.Requests.ImportedKeysRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_ImportedKeysRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_ImportedKeysRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest.class, org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest.Builder.class);
+      }
+
+      // Construct using org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        catalog_ = "";
+
+        schema_ = "";
+
+        tableName_ = "";
+
+        connectionId_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_ImportedKeysRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest getDefaultInstanceForType() {
+        return org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest build() {
+        org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest buildPartial() {
+        org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest result = new org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest(this);
+        result.catalog_ = catalog_;
+        result.schema_ = schema_;
+        result.tableName_ = tableName_;
+        result.connectionId_ = connectionId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest) {
+          return mergeFrom((org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest other) {
+        if (other == org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest.getDefaultInstance()) return this;
+        if (!other.getCatalog().isEmpty()) {
+          catalog_ = other.catalog_;
+          onChanged();
+        }
+        if (!other.getSchema().isEmpty()) {
+          schema_ = other.schema_;
+          onChanged();
+        }
+        if (!other.getTableName().isEmpty()) {
+          tableName_ = other.tableName_;
+          onChanged();
+        }
+        if (!other.getConnectionId().isEmpty()) {
+          connectionId_ = other.connectionId_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object catalog_ = "";
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public java.lang.String getCatalog() {
+        java.lang.Object ref = catalog_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          catalog_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCatalogBytes() {
+        java.lang.Object ref = catalog_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          catalog_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder setCatalog(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        catalog_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder clearCatalog() {
+        
+        catalog_ = getDefaultInstance().getCatalog();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder setCatalogBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        catalog_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object schema_ = "";
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public java.lang.String getSchema() {
+        java.lang.Object ref = schema_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          schema_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSchemaBytes() {
+        java.lang.Object ref = schema_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          schema_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder setSchema(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        schema_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder clearSchema() {
+        
+        schema_ = getDefaultInstance().getSchema();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder setSchemaBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        schema_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object tableName_ = "";
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public java.lang.String getTableName() {
+        java.lang.Object ref = tableName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tableName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTableNameBytes() {
+        java.lang.Object ref = tableName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tableName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder setTableName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tableName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder clearTableName() {
+        
+        tableName_ = getDefaultInstance().getTableName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder setTableNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tableName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object connectionId_ = "";
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public java.lang.String getConnectionId() {
+        java.lang.Object ref = connectionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          connectionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConnectionIdBytes() {
+        java.lang.Object ref = connectionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          connectionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public Builder setConnectionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        connectionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public Builder clearConnectionId() {
+        
+        connectionId_ = getDefaultInstance().getConnectionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public Builder setConnectionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        connectionId_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ImportedKeysRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ImportedKeysRequest)
+    private static final org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest();
+    }
+
+    public static org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ImportedKeysRequest>
+        PARSER = new com.google.protobuf.AbstractParser<ImportedKeysRequest>() {
+      @java.lang.Override
+      public ImportedKeysRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ImportedKeysRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ImportedKeysRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ImportedKeysRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ExportedKeysRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ExportedKeysRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    java.lang.String getCatalog();
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getCatalogBytes();
+
+    /**
+     * <code>string schema = 2;</code>
+     */
+    java.lang.String getSchema();
+    /**
+     * <code>string schema = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSchemaBytes();
+
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    java.lang.String getTableName();
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTableNameBytes();
+
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    java.lang.String getConnectionId();
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getConnectionIdBytes();
+  }
+  /**
+   * <pre>
+   * Request for Request for Meta#getExportedKeys(String, String, String)
+   * </pre>
+   *
+   * Protobuf type {@code ExportedKeysRequest}
+   */
+  public  static final class ExportedKeysRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ExportedKeysRequest)
+      ExportedKeysRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ExportedKeysRequest.newBuilder() to construct.
+    private ExportedKeysRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ExportedKeysRequest() {
+      catalog_ = "";
+      schema_ = "";
+      tableName_ = "";
+      connectionId_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ExportedKeysRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              catalog_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              schema_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              tableName_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              connectionId_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.apache.calcite.avatica.proto.Requests.internal_static_ExportedKeysRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.apache.calcite.avatica.proto.Requests.internal_static_ExportedKeysRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest.class, org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest.Builder.class);
+    }
+
+    public static final int CATALOG_FIELD_NUMBER = 1;
+    private volatile java.lang.Object catalog_;
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    public java.lang.String getCatalog() {
+      java.lang.Object ref = catalog_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        catalog_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCatalogBytes() {
+      java.lang.Object ref = catalog_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        catalog_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SCHEMA_FIELD_NUMBER = 2;
+    private volatile java.lang.Object schema_;
+    /**
+     * <code>string schema = 2;</code>
+     */
+    public java.lang.String getSchema() {
+      java.lang.Object ref = schema_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        schema_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string schema = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSchemaBytes() {
+      java.lang.Object ref = schema_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        schema_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TABLE_NAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object tableName_;
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    public java.lang.String getTableName() {
+      java.lang.Object ref = tableName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tableName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTableNameBytes() {
+      java.lang.Object ref = tableName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tableName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CONNECTION_ID_FIELD_NUMBER = 4;
+    private volatile java.lang.Object connectionId_;
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    public java.lang.String getConnectionId() {
+      java.lang.Object ref = connectionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        connectionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string connection_id = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConnectionIdBytes() {
+      java.lang.Object ref = connectionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        connectionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getCatalogBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, catalog_);
+      }
+      if (!getSchemaBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, schema_);
+      }
+      if (!getTableNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, tableName_);
+      }
+      if (!getConnectionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, connectionId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getCatalogBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, catalog_);
+      }
+      if (!getSchemaBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, schema_);
+      }
+      if (!getTableNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, tableName_);
+      }
+      if (!getConnectionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, connectionId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest)) {
+        return super.equals(obj);
+      }
+      org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest other = (org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest) obj;
+
+      boolean result = true;
+      result = result && getCatalog()
+          .equals(other.getCatalog());
+      result = result && getSchema()
+          .equals(other.getSchema());
+      result = result && getTableName()
+          .equals(other.getTableName());
+      result = result && getConnectionId()
+          .equals(other.getConnectionId());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CATALOG_FIELD_NUMBER;
+      hash = (53 * hash) + getCatalog().hashCode();
+      hash = (37 * hash) + SCHEMA_FIELD_NUMBER;
+      hash = (53 * hash) + getSchema().hashCode();
+      hash = (37 * hash) + TABLE_NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getTableName().hashCode();
+      hash = (37 * hash) + CONNECTION_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getConnectionId().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Request for Request for Meta#getExportedKeys(String, String, String)
+     * </pre>
+     *
+     * Protobuf type {@code ExportedKeysRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ExportedKeysRequest)
+        org.apache.calcite.avatica.proto.Requests.ExportedKeysRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_ExportedKeysRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_ExportedKeysRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest.class, org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest.Builder.class);
+      }
+
+      // Construct using org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        catalog_ = "";
+
+        schema_ = "";
+
+        tableName_ = "";
+
+        connectionId_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_ExportedKeysRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest getDefaultInstanceForType() {
+        return org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest build() {
+        org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest buildPartial() {
+        org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest result = new org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest(this);
+        result.catalog_ = catalog_;
+        result.schema_ = schema_;
+        result.tableName_ = tableName_;
+        result.connectionId_ = connectionId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest) {
+          return mergeFrom((org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest other) {
+        if (other == org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest.getDefaultInstance()) return this;
+        if (!other.getCatalog().isEmpty()) {
+          catalog_ = other.catalog_;
+          onChanged();
+        }
+        if (!other.getSchema().isEmpty()) {
+          schema_ = other.schema_;
+          onChanged();
+        }
+        if (!other.getTableName().isEmpty()) {
+          tableName_ = other.tableName_;
+          onChanged();
+        }
+        if (!other.getConnectionId().isEmpty()) {
+          connectionId_ = other.connectionId_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object catalog_ = "";
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public java.lang.String getCatalog() {
+        java.lang.Object ref = catalog_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          catalog_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCatalogBytes() {
+        java.lang.Object ref = catalog_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          catalog_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder setCatalog(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        catalog_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder clearCatalog() {
+        
+        catalog_ = getDefaultInstance().getCatalog();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder setCatalogBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        catalog_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object schema_ = "";
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public java.lang.String getSchema() {
+        java.lang.Object ref = schema_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          schema_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSchemaBytes() {
+        java.lang.Object ref = schema_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          schema_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder setSchema(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        schema_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder clearSchema() {
+        
+        schema_ = getDefaultInstance().getSchema();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder setSchemaBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        schema_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object tableName_ = "";
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public java.lang.String getTableName() {
+        java.lang.Object ref = tableName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tableName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTableNameBytes() {
+        java.lang.Object ref = tableName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tableName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder setTableName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tableName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder clearTableName() {
+        
+        tableName_ = getDefaultInstance().getTableName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder setTableNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tableName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object connectionId_ = "";
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public java.lang.String getConnectionId() {
+        java.lang.Object ref = connectionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          connectionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConnectionIdBytes() {
+        java.lang.Object ref = connectionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          connectionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public Builder setConnectionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        connectionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public Builder clearConnectionId() {
+        
+        connectionId_ = getDefaultInstance().getConnectionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string connection_id = 4;</code>
+       */
+      public Builder setConnectionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        connectionId_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ExportedKeysRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ExportedKeysRequest)
+    private static final org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest();
+    }
+
+    public static org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ExportedKeysRequest>
+        PARSER = new com.google.protobuf.AbstractParser<ExportedKeysRequest>() {
+      @java.lang.Override
+      public ExportedKeysRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ExportedKeysRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ExportedKeysRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ExportedKeysRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface IndexInfoRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:IndexInfoRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    java.lang.String getCatalog();
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getCatalogBytes();
+
+    /**
+     * <code>string schema = 2;</code>
+     */
+    java.lang.String getSchema();
+    /**
+     * <code>string schema = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getSchemaBytes();
+
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    java.lang.String getTableName();
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTableNameBytes();
+
+    /**
+     * <code>bool unique = 4;</code>
+     */
+    boolean getUnique();
+
+    /**
+     * <code>bool approximate = 5;</code>
+     */
+    boolean getApproximate();
+
+    /**
+     * <code>string connection_id = 6;</code>
+     */
+    java.lang.String getConnectionId();
+    /**
+     * <code>string connection_id = 6;</code>
+     */
+    com.google.protobuf.ByteString
+        getConnectionIdBytes();
+  }
+  /**
+   * <pre>
+   * Request for Request for Meta#getIndexInfo(String, String, String, boolean, boolean)
+   * </pre>
+   *
+   * Protobuf type {@code IndexInfoRequest}
+   */
+  public  static final class IndexInfoRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:IndexInfoRequest)
+      IndexInfoRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use IndexInfoRequest.newBuilder() to construct.
+    private IndexInfoRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private IndexInfoRequest() {
+      catalog_ = "";
+      schema_ = "";
+      tableName_ = "";
+      unique_ = false;
+      approximate_ = false;
+      connectionId_ = "";
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private IndexInfoRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              catalog_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              schema_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              tableName_ = s;
+              break;
+            }
+            case 32: {
+
+              unique_ = input.readBool();
+              break;
+            }
+            case 40: {
+
+              approximate_ = input.readBool();
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              connectionId_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.apache.calcite.avatica.proto.Requests.internal_static_IndexInfoRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.apache.calcite.avatica.proto.Requests.internal_static_IndexInfoRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.apache.calcite.avatica.proto.Requests.IndexInfoRequest.class, org.apache.calcite.avatica.proto.Requests.IndexInfoRequest.Builder.class);
+    }
+
+    public static final int CATALOG_FIELD_NUMBER = 1;
+    private volatile java.lang.Object catalog_;
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    public java.lang.String getCatalog() {
+      java.lang.Object ref = catalog_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        catalog_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string catalog = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCatalogBytes() {
+      java.lang.Object ref = catalog_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        catalog_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SCHEMA_FIELD_NUMBER = 2;
+    private volatile java.lang.Object schema_;
+    /**
+     * <code>string schema = 2;</code>
+     */
+    public java.lang.String getSchema() {
+      java.lang.Object ref = schema_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        schema_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string schema = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSchemaBytes() {
+      java.lang.Object ref = schema_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        schema_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TABLE_NAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object tableName_;
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    public java.lang.String getTableName() {
+      java.lang.Object ref = tableName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        tableName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string table_name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTableNameBytes() {
+      java.lang.Object ref = tableName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        tableName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int UNIQUE_FIELD_NUMBER = 4;
+    private boolean unique_;
+    /**
+     * <code>bool unique = 4;</code>
+     */
+    public boolean getUnique() {
+      return unique_;
+    }
+
+    public static final int APPROXIMATE_FIELD_NUMBER = 5;
+    private boolean approximate_;
+    /**
+     * <code>bool approximate = 5;</code>
+     */
+    public boolean getApproximate() {
+      return approximate_;
+    }
+
+    public static final int CONNECTION_ID_FIELD_NUMBER = 6;
+    private volatile java.lang.Object connectionId_;
+    /**
+     * <code>string connection_id = 6;</code>
+     */
+    public java.lang.String getConnectionId() {
+      java.lang.Object ref = connectionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        connectionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string connection_id = 6;</code>
+     */
+    public com.google.protobuf.ByteString
+        getConnectionIdBytes() {
+      java.lang.Object ref = connectionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        connectionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getCatalogBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, catalog_);
+      }
+      if (!getSchemaBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, schema_);
+      }
+      if (!getTableNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, tableName_);
+      }
+      if (unique_ != false) {
+        output.writeBool(4, unique_);
+      }
+      if (approximate_ != false) {
+        output.writeBool(5, approximate_);
+      }
+      if (!getConnectionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, connectionId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getCatalogBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, catalog_);
+      }
+      if (!getSchemaBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, schema_);
+      }
+      if (!getTableNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, tableName_);
+      }
+      if (unique_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, unique_);
+      }
+      if (approximate_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, approximate_);
+      }
+      if (!getConnectionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, connectionId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.apache.calcite.avatica.proto.Requests.IndexInfoRequest)) {
+        return super.equals(obj);
+      }
+      org.apache.calcite.avatica.proto.Requests.IndexInfoRequest other = (org.apache.calcite.avatica.proto.Requests.IndexInfoRequest) obj;
+
+      boolean result = true;
+      result = result && getCatalog()
+          .equals(other.getCatalog());
+      result = result && getSchema()
+          .equals(other.getSchema());
+      result = result && getTableName()
+          .equals(other.getTableName());
+      result = result && (getUnique()
+          == other.getUnique());
+      result = result && (getApproximate()
+          == other.getApproximate());
+      result = result && getConnectionId()
+          .equals(other.getConnectionId());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CATALOG_FIELD_NUMBER;
+      hash = (53 * hash) + getCatalog().hashCode();
+      hash = (37 * hash) + SCHEMA_FIELD_NUMBER;
+      hash = (53 * hash) + getSchema().hashCode();
+      hash = (37 * hash) + TABLE_NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getTableName().hashCode();
+      hash = (37 * hash) + UNIQUE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getUnique());
+      hash = (37 * hash) + APPROXIMATE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getApproximate());
+      hash = (37 * hash) + CONNECTION_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getConnectionId().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.apache.calcite.avatica.proto.Requests.IndexInfoRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * Request for Request for Meta#getIndexInfo(String, String, String, boolean, boolean)
+     * </pre>
+     *
+     * Protobuf type {@code IndexInfoRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:IndexInfoRequest)
+        org.apache.calcite.avatica.proto.Requests.IndexInfoRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_IndexInfoRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_IndexInfoRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.apache.calcite.avatica.proto.Requests.IndexInfoRequest.class, org.apache.calcite.avatica.proto.Requests.IndexInfoRequest.Builder.class);
+      }
+
+      // Construct using org.apache.calcite.avatica.proto.Requests.IndexInfoRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        catalog_ = "";
+
+        schema_ = "";
+
+        tableName_ = "";
+
+        unique_ = false;
+
+        approximate_ = false;
+
+        connectionId_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.apache.calcite.avatica.proto.Requests.internal_static_IndexInfoRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.IndexInfoRequest getDefaultInstanceForType() {
+        return org.apache.calcite.avatica.proto.Requests.IndexInfoRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.IndexInfoRequest build() {
+        org.apache.calcite.avatica.proto.Requests.IndexInfoRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.apache.calcite.avatica.proto.Requests.IndexInfoRequest buildPartial() {
+        org.apache.calcite.avatica.proto.Requests.IndexInfoRequest result = new org.apache.calcite.avatica.proto.Requests.IndexInfoRequest(this);
+        result.catalog_ = catalog_;
+        result.schema_ = schema_;
+        result.tableName_ = tableName_;
+        result.unique_ = unique_;
+        result.approximate_ = approximate_;
+        result.connectionId_ = connectionId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.apache.calcite.avatica.proto.Requests.IndexInfoRequest) {
+          return mergeFrom((org.apache.calcite.avatica.proto.Requests.IndexInfoRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.apache.calcite.avatica.proto.Requests.IndexInfoRequest other) {
+        if (other == org.apache.calcite.avatica.proto.Requests.IndexInfoRequest.getDefaultInstance()) return this;
+        if (!other.getCatalog().isEmpty()) {
+          catalog_ = other.catalog_;
+          onChanged();
+        }
+        if (!other.getSchema().isEmpty()) {
+          schema_ = other.schema_;
+          onChanged();
+        }
+        if (!other.getTableName().isEmpty()) {
+          tableName_ = other.tableName_;
+          onChanged();
+        }
+        if (other.getUnique() != false) {
+          setUnique(other.getUnique());
+        }
+        if (other.getApproximate() != false) {
+          setApproximate(other.getApproximate());
+        }
+        if (!other.getConnectionId().isEmpty()) {
+          connectionId_ = other.connectionId_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.apache.calcite.avatica.proto.Requests.IndexInfoRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.apache.calcite.avatica.proto.Requests.IndexInfoRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object catalog_ = "";
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public java.lang.String getCatalog() {
+        java.lang.Object ref = catalog_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          catalog_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCatalogBytes() {
+        java.lang.Object ref = catalog_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          catalog_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder setCatalog(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        catalog_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder clearCatalog() {
+        
+        catalog_ = getDefaultInstance().getCatalog();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string catalog = 1;</code>
+       */
+      public Builder setCatalogBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        catalog_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object schema_ = "";
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public java.lang.String getSchema() {
+        java.lang.Object ref = schema_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          schema_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSchemaBytes() {
+        java.lang.Object ref = schema_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          schema_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder setSchema(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        schema_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder clearSchema() {
+        
+        schema_ = getDefaultInstance().getSchema();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string schema = 2;</code>
+       */
+      public Builder setSchemaBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        schema_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object tableName_ = "";
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public java.lang.String getTableName() {
+        java.lang.Object ref = tableName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          tableName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTableNameBytes() {
+        java.lang.Object ref = tableName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          tableName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder setTableName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        tableName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder clearTableName() {
+        
+        tableName_ = getDefaultInstance().getTableName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string table_name = 3;</code>
+       */
+      public Builder setTableNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        tableName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean unique_ ;
+      /**
+       * <code>bool unique = 4;</code>
+       */
+      public boolean getUnique() {
+        return unique_;
+      }
+      /**
+       * <code>bool unique = 4;</code>
+       */
+      public Builder setUnique(boolean value) {
+        
+        unique_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool unique = 4;</code>
+       */
+      public Builder clearUnique() {
+        
+        unique_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean approximate_ ;
+      /**
+       * <code>bool approximate = 5;</code>
+       */
+      public boolean getApproximate() {
+        return approximate_;
+      }
+      /**
+       * <code>bool approximate = 5;</code>
+       */
+      public Builder setApproximate(boolean value) {
+        
+        approximate_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool approximate = 5;</code>
+       */
+      public Builder clearApproximate() {
+        
+        approximate_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object connectionId_ = "";
+      /**
+       * <code>string connection_id = 6;</code>
+       */
+      public java.lang.String getConnectionId() {
+        java.lang.Object ref = connectionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          connectionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string connection_id = 6;</code>
+       */
+      public com.google.protobuf.ByteString
+          getConnectionIdBytes() {
+        java.lang.Object ref = connectionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          connectionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string connection_id = 6;</code>
+       */
+      public Builder setConnectionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        connectionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string connection_id = 6;</code>
+       */
+      public Builder clearConnectionId() {
+        
+        connectionId_ = getDefaultInstance().getConnectionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string connection_id = 6;</code>
+       */
+      public Builder setConnectionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        connectionId_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:IndexInfoRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:IndexInfoRequest)
+    private static final org.apache.calcite.avatica.proto.Requests.IndexInfoRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.apache.calcite.avatica.proto.Requests.IndexInfoRequest();
+    }
+
+    public static org.apache.calcite.avatica.proto.Requests.IndexInfoRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<IndexInfoRequest>
+        PARSER = new com.google.protobuf.AbstractParser<IndexInfoRequest>() {
+      @java.lang.Override
+      public IndexInfoRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new IndexInfoRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<IndexInfoRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<IndexInfoRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.apache.calcite.avatica.proto.Requests.IndexInfoRequest getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -18406,6 +21441,21 @@ public final class Requests {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_PrimaryKeysRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ImportedKeysRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ImportedKeysRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ExportedKeysRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ExportedKeysRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_IndexInfoRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_IndexInfoRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_PrepareAndExecuteRequest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -18511,44 +21561,52 @@ public final class Requests {
       "\025\n\rconnection_id\030\001 \001(\t\"`\n\022PrimaryKeysReq" +
       "uest\022\017\n\007catalog\030\001 \001(\t\022\016\n\006schema\030\002 \001(\t\022\022\n" +
       "\ntable_name\030\003 \001(\t\022\025\n\rconnection_id\030\004 \001(\t" +
-      "\"\241\001\n\030PrepareAndExecuteRequest\022\025\n\rconnect" +
-      "ion_id\030\001 \001(\t\022\013\n\003sql\030\002 \001(\t\022\025\n\rmax_row_cou" +
-      "nt\030\003 \001(\004\022\024\n\014statement_id\030\004 \001(\r\022\026\n\016max_ro" +
-      "ws_total\030\005 \001(\003\022\034\n\024first_frame_max_size\030\006" +
-      " \001(\005\"c\n\016PrepareRequest\022\025\n\rconnection_id\030" +
-      "\001 \001(\t\022\013\n\003sql\030\002 \001(\t\022\025\n\rmax_row_count\030\003 \001(" +
-      "\004\022\026\n\016max_rows_total\030\004 \001(\003\"\200\001\n\014FetchReque" +
+      "\"a\n\023ImportedKeysRequest\022\017\n\007catalog\030\001 \001(\t" +
+      "\022\016\n\006schema\030\002 \001(\t\022\022\n\ntable_name\030\003 \001(\t\022\025\n\r" +
+      "connection_id\030\004 \001(\t\"a\n\023ExportedKeysReque" +
+      "st\022\017\n\007catalog\030\001 \001(\t\022\016\n\006schema\030\002 \001(\t\022\022\n\nt" +
+      "able_name\030\003 \001(\t\022\025\n\rconnection_id\030\004 \001(\t\"\203" +
+      "\001\n\020IndexInfoRequest\022\017\n\007catalog\030\001 \001(\t\022\016\n\006" +
+      "schema\030\002 \001(\t\022\022\n\ntable_name\030\003 \001(\t\022\016\n\006uniq" +
+      "ue\030\004 \001(\010\022\023\n\013approximate\030\005 \001(\010\022\025\n\rconnect" +
+      "ion_id\030\006 \001(\t\"\241\001\n\030PrepareAndExecuteReques" +
+      "t\022\025\n\rconnection_id\030\001 \001(\t\022\013\n\003sql\030\002 \001(\t\022\025\n" +
+      "\rmax_row_count\030\003 \001(\004\022\024\n\014statement_id\030\004 \001" +
+      "(\r\022\026\n\016max_rows_total\030\005 \001(\003\022\034\n\024first_fram" +
+      "e_max_size\030\006 \001(\005\"c\n\016PrepareRequest\022\025\n\rco" +
+      "nnection_id\030\001 \001(\t\022\013\n\003sql\030\002 \001(\t\022\025\n\rmax_ro" +
+      "w_count\030\003 \001(\004\022\026\n\016max_rows_total\030\004 \001(\003\"\200\001" +
+      "\n\014FetchRequest\022\025\n\rconnection_id\030\001 \001(\t\022\024\n" +
+      "\014statement_id\030\002 \001(\r\022\016\n\006offset\030\003 \001(\004\022\033\n\023f" +
+      "etch_max_row_count\030\004 \001(\r\022\026\n\016frame_max_si" +
+      "ze\030\005 \001(\005\"/\n\026CreateStatementRequest\022\025\n\rco" +
+      "nnection_id\030\001 \001(\t\"D\n\025CloseStatementReque" +
       "st\022\025\n\rconnection_id\030\001 \001(\t\022\024\n\014statement_i" +
-      "d\030\002 \001(\r\022\016\n\006offset\030\003 \001(\004\022\033\n\023fetch_max_row" +
-      "_count\030\004 \001(\r\022\026\n\016frame_max_size\030\005 \001(\005\"/\n\026" +
-      "CreateStatementRequest\022\025\n\rconnection_id\030" +
-      "\001 \001(\t\"D\n\025CloseStatementRequest\022\025\n\rconnec" +
-      "tion_id\030\001 \001(\t\022\024\n\014statement_id\030\002 \001(\r\"\213\001\n\025" +
-      "OpenConnectionRequest\022\025\n\rconnection_id\030\001" +
-      " \001(\t\022.\n\004info\030\002 \003(\0132 .OpenConnectionReque" +
-      "st.InfoEntry\032+\n\tInfoEntry\022\013\n\003key\030\001 \001(\t\022\r" +
-      "\n\005value\030\002 \001(\t:\0028\001\"/\n\026CloseConnectionRequ" +
-      "est\022\025\n\rconnection_id\030\001 \001(\t\"Y\n\025Connection" +
-      "SyncRequest\022\025\n\rconnection_id\030\001 \001(\t\022)\n\nco" +
-      "nn_props\030\002 \001(\0132\025.ConnectionProperties\"\307\001" +
-      "\n\016ExecuteRequest\022)\n\017statementHandle\030\001 \001(" +
-      "\0132\020.StatementHandle\022%\n\020parameter_values\030" +
-      "\002 \003(\0132\013.TypedValue\022\'\n\037deprecated_first_f" +
-      "rame_max_size\030\003 \001(\004\022\034\n\024has_parameter_val" +
-      "ues\030\004 \001(\010\022\034\n\024first_frame_max_size\030\005 \001(\005\"" +
-      "m\n\022SyncResultsRequest\022\025\n\rconnection_id\030\001" +
-      " \001(\t\022\024\n\014statement_id\030\002 \001(\r\022\032\n\005state\030\003 \001(" +
-      "\0132\013.QueryState\022\016\n\006offset\030\004 \001(\004\"&\n\rCommit" +
-      "Request\022\025\n\rconnection_id\030\001 \001(\t\"(\n\017Rollba" +
-      "ckRequest\022\025\n\rconnection_id\030\001 \001(\t\"b\n\035Prep" +
-      "areAndExecuteBatchRequest\022\025\n\rconnection_" +
-      "id\030\001 \001(\t\022\024\n\014statement_id\030\002 \001(\r\022\024\n\014sql_co" +
-      "mmands\030\003 \003(\t\"4\n\013UpdateBatch\022%\n\020parameter" +
-      "_values\030\001 \003(\0132\013.TypedValue\"a\n\023ExecuteBat" +
-      "chRequest\022\025\n\rconnection_id\030\001 \001(\t\022\024\n\014stat" +
-      "ement_id\030\002 \001(\r\022\035\n\007updates\030\003 \003(\0132\014.Update" +
-      "BatchB\"\n org.apache.calcite.avatica.prot" +
-      "ob\006proto3"
+      "d\030\002 \001(\r\"\213\001\n\025OpenConnectionRequest\022\025\n\rcon" +
+      "nection_id\030\001 \001(\t\022.\n\004info\030\002 \003(\0132 .OpenCon" +
+      "nectionRequest.InfoEntry\032+\n\tInfoEntry\022\013\n" +
+      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"/\n\026CloseCo" +
+      "nnectionRequest\022\025\n\rconnection_id\030\001 \001(\t\"Y" +
+      "\n\025ConnectionSyncRequest\022\025\n\rconnection_id" +
+      "\030\001 \001(\t\022)\n\nconn_props\030\002 \001(\0132\025.ConnectionP" +
+      "roperties\"\307\001\n\016ExecuteRequest\022)\n\017statemen" +
+      "tHandle\030\001 \001(\0132\020.StatementHandle\022%\n\020param" +
+      "eter_values\030\002 \003(\0132\013.TypedValue\022\'\n\037deprec" +
+      "ated_first_frame_max_size\030\003 \001(\004\022\034\n\024has_p" +
+      "arameter_values\030\004 \001(\010\022\034\n\024first_frame_max" +
+      "_size\030\005 \001(\005\"m\n\022SyncResultsRequest\022\025\n\rcon" +
+      "nection_id\030\001 \001(\t\022\024\n\014statement_id\030\002 \001(\r\022\032" +
+      "\n\005state\030\003 \001(\0132\013.QueryState\022\016\n\006offset\030\004 \001" +
+      "(\004\"&\n\rCommitRequest\022\025\n\rconnection_id\030\001 \001" +
+      "(\t\"(\n\017RollbackRequest\022\025\n\rconnection_id\030\001" +
+      " \001(\t\"b\n\035PrepareAndExecuteBatchRequest\022\025\n" +
+      "\rconnection_id\030\001 \001(\t\022\024\n\014statement_id\030\002 \001" +
+      "(\r\022\024\n\014sql_commands\030\003 \003(\t\"4\n\013UpdateBatch\022" +
+      "%\n\020parameter_values\030\001 \003(\0132\013.TypedValue\"a" +
+      "\n\023ExecuteBatchRequest\022\025\n\rconnection_id\030\001" +
+      " \001(\t\022\024\n\014statement_id\030\002 \001(\r\022\035\n\007updates\030\003 " +
+      "\003(\0132\014.UpdateBatchB\"\n org.apache.calcite." +
+      "avatica.protob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -18611,38 +21669,56 @@ public final class Requests {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PrimaryKeysRequest_descriptor,
         new java.lang.String[] { "Catalog", "Schema", "TableName", "ConnectionId", });
-    internal_static_PrepareAndExecuteRequest_descriptor =
+    internal_static_ImportedKeysRequest_descriptor =
       getDescriptor().getMessageTypes().get(8);
+    internal_static_ImportedKeysRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ImportedKeysRequest_descriptor,
+        new java.lang.String[] { "Catalog", "Schema", "TableName", "ConnectionId", });
+    internal_static_ExportedKeysRequest_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_ExportedKeysRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ExportedKeysRequest_descriptor,
+        new java.lang.String[] { "Catalog", "Schema", "TableName", "ConnectionId", });
+    internal_static_IndexInfoRequest_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_IndexInfoRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_IndexInfoRequest_descriptor,
+        new java.lang.String[] { "Catalog", "Schema", "TableName", "Unique", "Approximate", "ConnectionId", });
+    internal_static_PrepareAndExecuteRequest_descriptor =
+      getDescriptor().getMessageTypes().get(11);
     internal_static_PrepareAndExecuteRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PrepareAndExecuteRequest_descriptor,
         new java.lang.String[] { "ConnectionId", "Sql", "MaxRowCount", "StatementId", "MaxRowsTotal", "FirstFrameMaxSize", });
     internal_static_PrepareRequest_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_PrepareRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PrepareRequest_descriptor,
         new java.lang.String[] { "ConnectionId", "Sql", "MaxRowCount", "MaxRowsTotal", });
     internal_static_FetchRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_FetchRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_FetchRequest_descriptor,
         new java.lang.String[] { "ConnectionId", "StatementId", "Offset", "FetchMaxRowCount", "FrameMaxSize", });
     internal_static_CreateStatementRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_CreateStatementRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CreateStatementRequest_descriptor,
         new java.lang.String[] { "ConnectionId", });
     internal_static_CloseStatementRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_CloseStatementRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CloseStatementRequest_descriptor,
         new java.lang.String[] { "ConnectionId", "StatementId", });
     internal_static_OpenConnectionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_OpenConnectionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_OpenConnectionRequest_descriptor,
@@ -18654,55 +21730,55 @@ public final class Requests {
         internal_static_OpenConnectionRequest_InfoEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_CloseConnectionRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_CloseConnectionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CloseConnectionRequest_descriptor,
         new java.lang.String[] { "ConnectionId", });
     internal_static_ConnectionSyncRequest_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_ConnectionSyncRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ConnectionSyncRequest_descriptor,
         new java.lang.String[] { "ConnectionId", "ConnProps", });
     internal_static_ExecuteRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_ExecuteRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ExecuteRequest_descriptor,
         new java.lang.String[] { "StatementHandle", "ParameterValues", "DeprecatedFirstFrameMaxSize", "HasParameterValues", "FirstFrameMaxSize", });
     internal_static_SyncResultsRequest_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_SyncResultsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_SyncResultsRequest_descriptor,
         new java.lang.String[] { "ConnectionId", "StatementId", "State", "Offset", });
     internal_static_CommitRequest_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_CommitRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_CommitRequest_descriptor,
         new java.lang.String[] { "ConnectionId", });
     internal_static_RollbackRequest_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_RollbackRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RollbackRequest_descriptor,
         new java.lang.String[] { "ConnectionId", });
     internal_static_PrepareAndExecuteBatchRequest_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_PrepareAndExecuteBatchRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_PrepareAndExecuteBatchRequest_descriptor,
         new java.lang.String[] { "ConnectionId", "StatementId", "SqlCommands", });
     internal_static_UpdateBatch_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_UpdateBatch_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateBatch_descriptor,
         new java.lang.String[] { "ParameterValues", });
     internal_static_ExecuteBatchRequest_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_ExecuteBatchRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ExecuteBatchRequest_descriptor,

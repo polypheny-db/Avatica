@@ -27,7 +27,10 @@ import org.apache.calcite.avatica.proto.Requests.CreateStatementRequest;
 import org.apache.calcite.avatica.proto.Requests.DatabasePropertyRequest;
 import org.apache.calcite.avatica.proto.Requests.ExecuteBatchRequest;
 import org.apache.calcite.avatica.proto.Requests.ExecuteRequest;
+import org.apache.calcite.avatica.proto.Requests.ExportedKeysRequest;
 import org.apache.calcite.avatica.proto.Requests.FetchRequest;
+import org.apache.calcite.avatica.proto.Requests.ImportedKeysRequest;
+import org.apache.calcite.avatica.proto.Requests.IndexInfoRequest;
 import org.apache.calcite.avatica.proto.Requests.OpenConnectionRequest;
 import org.apache.calcite.avatica.proto.Requests.PrepareAndExecuteBatchRequest;
 import org.apache.calcite.avatica.proto.Requests.PrepareAndExecuteRequest;
@@ -179,6 +182,12 @@ public class ProtobufTranslationImpl implements ProtobufTranslation {
         new RequestTranslator(TypeInfoRequest.parser(), new Service.TypeInfoRequest()));
     reqParsers.put(PrimaryKeysRequest.class.getName(),
         new RequestTranslator(PrimaryKeysRequest.parser(), new Service.PrimaryKeysRequest()));
+    reqParsers.put(ImportedKeysRequest.class.getName(),
+        new RequestTranslator(ImportedKeysRequest.parser(), new Service.ImportedKeysRequest()));
+    reqParsers.put(ExportedKeysRequest.class.getName(),
+        new RequestTranslator(ExportedKeysRequest.parser(), new Service.ExportedKeysRequest()));
+    reqParsers.put(IndexInfoRequest.class.getName(),
+        new RequestTranslator(IndexInfoRequest.parser(), new Service.IndexInfoRequest()));
     reqParsers.put(ExecuteRequest.class.getName(),
         new RequestTranslator(ExecuteRequest.parser(), new Service.ExecuteRequest()));
     reqParsers.put(SyncResultsRequest.class.getName(),
@@ -267,6 +276,9 @@ public class ProtobufTranslationImpl implements ProtobufTranslation {
     messageClasses.add(TablesRequest.class);
     messageClasses.add(TypeInfoRequest.class);
     messageClasses.add(PrimaryKeysRequest.class);
+    messageClasses.add(ImportedKeysRequest.class);
+    messageClasses.add(ExportedKeysRequest.class);
+    messageClasses.add(IndexInfoRequest.class);
     messageClasses.add(PrepareAndExecuteBatchRequest.class);
     messageClasses.add(ExecuteBatchRequest.class);
 

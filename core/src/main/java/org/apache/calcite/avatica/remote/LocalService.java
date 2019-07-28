@@ -198,6 +198,41 @@ public class LocalService implements Service {
     return toResponse(resultSet);
   }
 
+  public ResultSetResponse apply(ImportedKeysRequest request) {
+    final Meta.ConnectionHandle ch =
+            new Meta.ConnectionHandle(request.connectionId);
+    final Meta.MetaResultSet resultSet =
+            meta.getImportedKeys(ch,
+                    request.catalog,
+                    request.schema,
+                    request.tableName);
+    return toResponse(resultSet);
+  }
+
+  public ResultSetResponse apply(ExportedKeysRequest request) {
+    final Meta.ConnectionHandle ch =
+            new Meta.ConnectionHandle(request.connectionId);
+    final Meta.MetaResultSet resultSet =
+            meta.getExportedKeys(ch,
+                    request.catalog,
+                    request.schema,
+                    request.tableName);
+    return toResponse(resultSet);
+  }
+
+  public ResultSetResponse apply(IndexInfoRequest request) {
+    final Meta.ConnectionHandle ch =
+            new Meta.ConnectionHandle(request.connectionId);
+    final Meta.MetaResultSet resultSet =
+            meta.getIndexInfo(ch,
+                    request.catalog,
+                    request.schema,
+                    request.tableName,
+                    request.unique,
+                    request.approximate);
+    return toResponse(resultSet);
+  }
+
   public PrepareResponse apply(PrepareRequest request) {
     try (final Context ignore = prepareTimer.start()) {
       final Meta.ConnectionHandle ch =

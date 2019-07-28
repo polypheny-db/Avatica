@@ -68,12 +68,38 @@ message TypeInfoRequest {
   string connection_id = 1;
 }
 
-// Request for Request for Meta#getrimaryKeys(String, String, String)
+// Request for Request for Meta#getPrimaryKeys(String, String, String)
 message PrimaryKeysRequest {
   string catalog = 1;
   string schema = 2;
   string table_name = 3;
   string connection_id = 4;
+}
+
+// Request for Request for Meta#getImportedKeys(String, String, String)
+message ImportedKeysRequest {
+  string catalog = 1;
+  string schema = 2;
+  string table_name = 3;
+  string connection_id = 4;
+}
+
+// Request for Request for Meta#getExportedKeys(String, String, String)
+message ExportedKeysRequest {
+  string catalog = 1;
+  string schema = 2;
+  string table_name = 3;
+  string connection_id = 4;
+}
+
+// Request for Request for Meta#getIndexInfo(String, String, String, boolean, boolean)
+message IndexInfoRequest {
+  string catalog = 1;
+  string schema = 2;
+  string table_name = 3;
+  bool unique = 4;
+  bool approximate = 5;
+  string connection_id = 6;
 }
 
 // Request for Meta#prepareAndExecute(Meta.StatementHandle, String, long, Meta.PrepareCallback)

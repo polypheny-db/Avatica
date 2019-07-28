@@ -18,6 +18,7 @@ package org.apache.calcite.avatica.remote;
 
 import com.google.protobuf.Message;
 
+
 /**
  * Service implementation that encodes requests and responses as protocol buffers.
  */
@@ -58,6 +59,18 @@ public abstract class ProtobufService extends AbstractService {
   }
 
   @Override public ResultSetResponse apply(PrimaryKeysRequest request) {
+    return finagle((ResultSetResponse) _apply(request));
+  }
+
+  @Override public ResultSetResponse apply(ImportedKeysRequest request) {
+    return finagle((ResultSetResponse) _apply(request));
+  }
+
+  @Override public ResultSetResponse apply(ExportedKeysRequest request) {
+    return finagle((ResultSetResponse) _apply(request));
+  }
+
+  @Override public ResultSetResponse apply(IndexInfoRequest request) {
     return finagle((ResultSetResponse) _apply(request));
   }
 

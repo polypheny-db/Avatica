@@ -27,6 +27,7 @@ import org.apache.calcite.avatica.Meta.ConnectionHandle;
 import org.apache.calcite.avatica.QueryState;
 import org.apache.calcite.avatica.proto.Common;
 import org.apache.calcite.avatica.proto.Requests;
+import org.apache.calcite.avatica.proto.Requests.IndexInfoRequest;
 import org.apache.calcite.avatica.proto.Responses;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -65,6 +66,9 @@ public interface Service {
   ResultSetResponse apply(TypeInfoRequest request);
   ResultSetResponse apply(ColumnsRequest request);
   ResultSetResponse apply(PrimaryKeysRequest request);
+  ResultSetResponse apply(ImportedKeysRequest request);
+  ResultSetResponse apply(ExportedKeysRequest request);
+  ResultSetResponse apply(IndexInfoRequest request);
   PrepareResponse apply(PrepareRequest request);
   ExecuteResponse apply(ExecuteRequest request);
   ExecuteResponse apply(PrepareAndExecuteRequest request);
@@ -127,6 +131,9 @@ public interface Service {
       @JsonSubTypes.Type(value = TypeInfoRequest.class, name = "getTypeInfo"),
       @JsonSubTypes.Type(value = ColumnsRequest.class, name = "getColumns"),
       @JsonSubTypes.Type(value = PrimaryKeysRequest.class, name = "getPrimaryKeys"),
+      @JsonSubTypes.Type(value = ImportedKeysRequest.class, name = "getImportedKeys"),
+      @JsonSubTypes.Type(value = ExportedKeysRequest.class, name = "getExportedKeys"),
+      @JsonSubTypes.Type(value = IndexInfoRequest.class, name = "getIndexInfo"),
       @JsonSubTypes.Type(value = ExecuteRequest.class, name = "execute"),
       @JsonSubTypes.Type(value = PrepareRequest.class, name = "prepare"),
       @JsonSubTypes.Type(value = PrepareAndExecuteRequest.class,
@@ -840,6 +847,352 @@ public interface Service {
               && Objects.equals(catalog, ((PrimaryKeysRequest) o).catalog)
               && Objects.equals(schema, ((PrimaryKeysRequest) o).schema)
               && Objects.equals(tableName, ((PrimaryKeysRequest) o).tableName);
+    }
+  }
+
+  /** Request for
+   * {@link Meta#getImportedKeys(ConnectionHandle, String, String, String)}
+   */
+  class ImportedKeysRequest extends Request {
+    private static final FieldDescriptor CONNECTION_ID_DESCRIPTOR = Requests.ImportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ImportedKeysRequest.CONNECTION_ID_FIELD_NUMBER);
+    private static final FieldDescriptor CATALOG_DESCRIPTOR = Requests.ImportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ImportedKeysRequest.CATALOG_FIELD_NUMBER);
+    private static final FieldDescriptor SCHEMA_DESCRIPTOR = Requests.ImportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ImportedKeysRequest.SCHEMA_FIELD_NUMBER);
+    private static final FieldDescriptor TABLE_NAME_DESCRIPTOR = Requests.ImportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ImportedKeysRequest.TABLE_NAME_FIELD_NUMBER);
+
+    public final String connectionId;
+    public final String catalog;
+    public final String schema;
+    public final String tableName;
+
+    ImportedKeysRequest() {
+      connectionId = null;
+      catalog = null;
+      schema = null;
+      tableName = null;
+    }
+
+    @JsonCreator
+    public ImportedKeysRequest(@JsonProperty("connectionId") String connectionId,
+            @JsonProperty("catalog") String catalog,
+            @JsonProperty("schema") String schema,
+            @JsonProperty("tableName") String tableName) {
+      this.connectionId = connectionId;
+      this.catalog = catalog;
+      this.schema = schema;
+      this.tableName = tableName;
+    }
+
+    @Override Response accept(Service service) {
+      return service.apply(this);
+    }
+
+    @Override Request deserialize(Message genericMsg) {
+      final Requests.ImportedKeysRequest msg =
+              ProtobufService.castProtobufMessage(genericMsg, Requests.ImportedKeysRequest.class);
+
+      String connectionId = null;
+      if (msg.hasField(CONNECTION_ID_DESCRIPTOR)) {
+        connectionId = msg.getConnectionId();
+      }
+
+      String catalog = null;
+      if (msg.hasField(CATALOG_DESCRIPTOR)) {
+        catalog = msg.getCatalog();
+      }
+
+      String schema = null;
+      if (msg.hasField(SCHEMA_DESCRIPTOR)) {
+        schema = msg.getSchema();
+      }
+
+      String tableName = null;
+      if (msg.hasField(TABLE_NAME_DESCRIPTOR)) {
+        tableName = msg.getTableName();
+      }
+
+      return new ImportedKeysRequest(connectionId, catalog, schema, tableName);
+    }
+
+    @Override Requests.ImportedKeysRequest serialize() {
+      Requests.ImportedKeysRequest.Builder builder =
+              Requests.ImportedKeysRequest.newBuilder();
+
+      if (null != connectionId) {
+        builder.setConnectionId(connectionId);
+      }
+      if (null != catalog) {
+        builder.setCatalog(catalog);
+      }
+      if (null != schema) {
+        builder.setSchema(schema);
+      }
+      if (null != tableName) {
+        builder.setTableName(tableName);
+      }
+
+      return builder.build();
+    }
+
+    @Override public int hashCode() {
+      int result = 1;
+      result = p(result, connectionId);
+      result = p(result, catalog);
+      result = p(result, schema);
+      result = p(result, tableName);
+      return result;
+    }
+
+    @Override public boolean equals(Object o) {
+      return o == this
+              || o instanceof ImportedKeysRequest
+              && Objects.equals(connectionId, ((ImportedKeysRequest) o).connectionId)
+              && Objects.equals(catalog, ((ImportedKeysRequest) o).catalog)
+              && Objects.equals(schema, ((ImportedKeysRequest) o).schema)
+              && Objects.equals(tableName, ((ImportedKeysRequest) o).tableName);
+    }
+  }
+
+  /** Request for
+   * {@link Meta#getExportedKeys(ConnectionHandle, String, String, String)}
+   */
+  class ExportedKeysRequest extends Request {
+    private static final FieldDescriptor CONNECTION_ID_DESCRIPTOR = Requests.ExportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ExportedKeysRequest.CONNECTION_ID_FIELD_NUMBER);
+    private static final FieldDescriptor CATALOG_DESCRIPTOR = Requests.ExportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ExportedKeysRequest.CATALOG_FIELD_NUMBER);
+    private static final FieldDescriptor SCHEMA_DESCRIPTOR = Requests.ExportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ExportedKeysRequest.SCHEMA_FIELD_NUMBER);
+    private static final FieldDescriptor TABLE_NAME_DESCRIPTOR = Requests.ExportedKeysRequest
+        .getDescriptor().findFieldByNumber(Requests.ExportedKeysRequest.TABLE_NAME_FIELD_NUMBER);
+
+    public final String connectionId;
+    public final String catalog;
+    public final String schema;
+    public final String tableName;
+
+    ExportedKeysRequest() {
+      connectionId = null;
+      catalog = null;
+      schema = null;
+      tableName = null;
+    }
+
+    @JsonCreator
+    public ExportedKeysRequest(@JsonProperty("connectionId") String connectionId,
+            @JsonProperty("catalog") String catalog,
+            @JsonProperty("schema") String schema,
+            @JsonProperty("tableName") String tableName) {
+      this.connectionId = connectionId;
+      this.catalog = catalog;
+      this.schema = schema;
+      this.tableName = tableName;
+    }
+
+    @Override Response accept(Service service) {
+      return service.apply(this);
+    }
+
+    @Override Request deserialize(Message genericMsg) {
+      final Requests.ExportedKeysRequest msg =
+              ProtobufService.castProtobufMessage(genericMsg, Requests.ExportedKeysRequest.class);
+
+      String connectionId = null;
+      if (msg.hasField(CONNECTION_ID_DESCRIPTOR)) {
+        connectionId = msg.getConnectionId();
+      }
+
+      String catalog = null;
+      if (msg.hasField(CATALOG_DESCRIPTOR)) {
+        catalog = msg.getCatalog();
+      }
+
+      String schema = null;
+      if (msg.hasField(SCHEMA_DESCRIPTOR)) {
+        schema = msg.getSchema();
+      }
+
+      String tableName = null;
+      if (msg.hasField(TABLE_NAME_DESCRIPTOR)) {
+        tableName = msg.getTableName();
+      }
+
+      return new ExportedKeysRequest(connectionId, catalog, schema, tableName);
+    }
+
+    @Override Requests.ExportedKeysRequest serialize() {
+      Requests.ExportedKeysRequest.Builder builder =
+              Requests.ExportedKeysRequest.newBuilder();
+
+      if (null != connectionId) {
+        builder.setConnectionId(connectionId);
+      }
+      if (null != catalog) {
+        builder.setCatalog(catalog);
+      }
+      if (null != schema) {
+        builder.setSchema(schema);
+      }
+      if (null != tableName) {
+        builder.setTableName(tableName);
+      }
+
+      return builder.build();
+    }
+
+    @Override public int hashCode() {
+      int result = 1;
+      result = p(result, connectionId);
+      result = p(result, catalog);
+      result = p(result, schema);
+      result = p(result, tableName);
+      return result;
+    }
+
+    @Override public boolean equals(Object o) {
+      return o == this
+              || o instanceof ExportedKeysRequest
+              && Objects.equals(connectionId, ((ExportedKeysRequest) o).connectionId)
+              && Objects.equals(catalog, ((ExportedKeysRequest) o).catalog)
+              && Objects.equals(schema, ((ExportedKeysRequest) o).schema)
+              && Objects.equals(tableName, ((ExportedKeysRequest) o).tableName);
+    }
+  }
+
+  /** Request for
+   * {@link Meta#getIndexInfo(ConnectionHandle, String, String, String, boolean, boolean)}
+   */
+  class IndexInfoRequest extends Request {
+    private static final FieldDescriptor CONNECTION_ID_DESCRIPTOR = Requests.IndexInfoRequest
+        .getDescriptor().findFieldByNumber(Requests.IndexInfoRequest.CONNECTION_ID_FIELD_NUMBER);
+    private static final FieldDescriptor CATALOG_DESCRIPTOR = Requests.IndexInfoRequest
+        .getDescriptor().findFieldByNumber(Requests.IndexInfoRequest.CATALOG_FIELD_NUMBER);
+    private static final FieldDescriptor SCHEMA_DESCRIPTOR = Requests.IndexInfoRequest
+        .getDescriptor().findFieldByNumber(Requests.IndexInfoRequest.SCHEMA_FIELD_NUMBER);
+    private static final FieldDescriptor TABLE_NAME_DESCRIPTOR = Requests.IndexInfoRequest
+        .getDescriptor().findFieldByNumber(Requests.IndexInfoRequest.TABLE_NAME_FIELD_NUMBER);
+    private static final FieldDescriptor UNIQUE_DESCRIPTOR = Requests.IndexInfoRequest
+        .getDescriptor().findFieldByNumber(Requests.IndexInfoRequest.UNIQUE_FIELD_NUMBER);
+    private static final FieldDescriptor APPROXIMATE_DESCRIPTOR = Requests.IndexInfoRequest
+        .getDescriptor().findFieldByNumber(Requests.IndexInfoRequest.APPROXIMATE_FIELD_NUMBER);
+
+    public final String connectionId;
+    public final String catalog;
+    public final String schema;
+    public final String tableName;
+    public final boolean unique;
+    public final boolean approximate;
+
+    IndexInfoRequest() {
+      connectionId = null;
+      catalog = null;
+      schema = null;
+      tableName = null;
+      unique = false;
+      approximate = false;
+    }
+
+    @JsonCreator
+    public IndexInfoRequest(@JsonProperty("connectionId") String connectionId,
+            @JsonProperty("catalog") String catalog,
+            @JsonProperty("schema") String schema,
+            @JsonProperty("tableName") String tableName,
+            @JsonProperty("unique") Boolean unique,
+            @JsonProperty("approximate") Boolean approximate) {
+      this.connectionId = connectionId;
+      this.catalog = catalog;
+      this.schema = schema;
+      this.tableName = tableName;
+      this.unique = unique;
+      this.approximate = approximate;
+    }
+
+    @Override Response accept(Service service) {
+      return service.apply(this);
+    }
+
+    @Override Request deserialize(Message genericMsg) {
+      final Requests.IndexInfoRequest msg =
+          ProtobufService.castProtobufMessage(genericMsg, Requests.IndexInfoRequest.class);
+
+      String connectionId = null;
+      if (msg.hasField(CONNECTION_ID_DESCRIPTOR)) {
+        connectionId = msg.getConnectionId();
+      }
+
+      String catalog = null;
+      if (msg.hasField(CATALOG_DESCRIPTOR)) {
+        catalog = msg.getCatalog();
+      }
+
+      String schema = null;
+      if (msg.hasField(SCHEMA_DESCRIPTOR)) {
+        schema = msg.getSchema();
+      }
+
+      String tableName = null;
+      if (msg.hasField(TABLE_NAME_DESCRIPTOR)) {
+        tableName = msg.getTableName();
+      }
+
+      Boolean unique = null;
+      if (msg.hasField(UNIQUE_DESCRIPTOR)) {
+        unique = msg.getUnique();
+      }
+
+      Boolean approximate = null;
+      if (msg.hasField(APPROXIMATE_DESCRIPTOR)) {
+        approximate = msg.getApproximate();
+      }
+
+      return new IndexInfoRequest(connectionId, catalog, schema, tableName, unique, approximate);
+    }
+
+    @Override Requests.IndexInfoRequest serialize() {
+      Requests.IndexInfoRequest.Builder builder =
+              Requests.IndexInfoRequest.newBuilder();
+
+      if (null != connectionId) {
+        builder.setConnectionId(connectionId);
+      }
+      if (null != catalog) {
+        builder.setCatalog(catalog);
+      }
+      if (null != schema) {
+        builder.setSchema(schema);
+      }
+      if (null != tableName) {
+        builder.setTableName(tableName);
+      }
+      builder.setUnique(unique);
+      builder.setApproximate(approximate);
+
+      return builder.build();
+    }
+
+    @Override public int hashCode() {
+      int result = 1;
+      result = p(result, connectionId);
+      result = p(result, catalog);
+      result = p(result, schema);
+      result = p(result, tableName);
+      result = p(result, unique);
+      result = p(result, approximate);
+      return result;
+    }
+
+    @Override public boolean equals(Object o) {
+      return o == this
+              || o instanceof IndexInfoRequest
+              && Objects.equals(connectionId, ((IndexInfoRequest) o).connectionId)
+              && Objects.equals(catalog, ((IndexInfoRequest) o).catalog)
+              && Objects.equals(schema, ((IndexInfoRequest) o).schema)
+              && Objects.equals(tableName, ((IndexInfoRequest) o).tableName)
+              && Objects.equals(unique, ((IndexInfoRequest) o).unique)
+              && Objects.equals(approximate, ((IndexInfoRequest) o).approximate);
     }
   }
 
