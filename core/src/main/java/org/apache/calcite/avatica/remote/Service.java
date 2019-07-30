@@ -1100,8 +1100,8 @@ public interface Service {
             @JsonProperty("catalog") String catalog,
             @JsonProperty("schema") String schema,
             @JsonProperty("tableName") String tableName,
-            @JsonProperty("unique") Boolean unique,
-            @JsonProperty("approximate") Boolean approximate) {
+            @JsonProperty("unique") boolean unique,
+            @JsonProperty("approximate") boolean approximate) {
       this.connectionId = connectionId;
       this.catalog = catalog;
       this.schema = schema;
@@ -1138,12 +1138,12 @@ public interface Service {
         tableName = msg.getTableName();
       }
 
-      Boolean unique = null;
+      boolean unique = false;
       if (msg.hasField(UNIQUE_DESCRIPTOR)) {
         unique = msg.getUnique();
       }
 
-      Boolean approximate = null;
+      boolean approximate = false;
       if (msg.hasField(APPROXIMATE_DESCRIPTOR)) {
         approximate = msg.getApproximate();
       }
