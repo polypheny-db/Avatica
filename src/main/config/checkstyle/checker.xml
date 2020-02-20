@@ -32,29 +32,10 @@ limitations under the License.
 <module name="Checker">
   <property name="localeLanguage" value="en"/>
 
-  <!-- Checks for headers -->
-  <!-- See http://checkstyle.sf.net/config_header.html -->
-    <!-- Verify that EVERY source file has the appropriate license -->
-  <module name="Header">
-    <property name="headerFile" value="${checkstyle.header.file}"/>
-  </module>
-
   <!-- Checks for Javadoc comments (checker).           -->
   <!-- See http://checkstyle.sf.net/config_javadoc.html -->
     <!-- Require package javadoc -->
   <module name="JavadocPackage"/>
-
-  <!-- Miscellaneous other checks (checker).         -->
-  <!-- See http://checkstyle.sf.net/config_misc.html -->
-    <!-- Require files to end with newline characters -->
-  <module name="NewlineAtEndOfFile">
-    <property name="lineSeparator" value="lf"/>
-  </module>
-
-  <!-- Checks for whitespace (tree walker)                 -->
-  <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-    <!-- No tabs allowed! -->
-  <module name="FileTabCharacter"/>
 
   <module name="TreeWalker">
     <property name="cacheFile" value="target/checkstyle-cachefile"/>
@@ -120,13 +101,6 @@ limitations under the License.
       <property name="processJavadoc" value="true"/>
     </module>
     <module name="IllegalImport" />
-    <module name="AvoidStarImport" />
-    <module name="ImportOrder">
-      <property name="groups" value="org.apache.calcite,org.apache,au.com.,com.,io.,mondrian.,net.,org.,scala.,/^javax?\./"/>
-      <property name="ordered" value="true"/>
-      <property name="separated" value="true"/>
-      <property name="option" value="bottom"/>
-    </module>
 
     <!-- Checks for Javadoc comments (tree walker).       -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html -->
@@ -276,4 +250,8 @@ limitations under the License.
   </module>
 
   <module name="net.hydromatic.toolbox.checkstyle.HydromaticFileSetCheck"/>
+
+  <module name="SuppressionFilter">
+    <property name="file" value="${checkstyle.suppressions.file}"/>
+  </module>
 </module>

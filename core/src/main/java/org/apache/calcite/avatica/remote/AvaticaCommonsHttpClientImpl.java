@@ -57,7 +57,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Objects;
-
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 
@@ -102,7 +101,7 @@ public class AvaticaCommonsHttpClientImpl implements AvaticaHttpClient,
     initializeClient();
   }
 
-  private void initializeClient() {
+  protected void initializeClient() {
     socketFactoryRegistry = this.configureSocketFactories();
     configureConnectionPool(socketFactoryRegistry);
     this.authCache = new BasicAuthCache();
@@ -193,7 +192,7 @@ public class AvaticaCommonsHttpClientImpl implements AvaticaHttpClient,
     }
   }
 
-  public byte[] send(byte[] request) {
+  @Override public byte[] send(byte[] request) {
     while (true) {
       HttpClientContext context = HttpClientContext.create();
 

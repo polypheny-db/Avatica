@@ -56,7 +56,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Callable;
-
 import javax.security.auth.Subject;
 import javax.security.auth.kerberos.KerberosPrincipal;
 import javax.security.auth.login.LoginContext;
@@ -779,9 +778,6 @@ public class HttpServer {
         handler = buildHandler(this, serverConfig);
         break;
       case SPNEGO:
-        if (usingTLS) {
-          throw new IllegalArgumentException("TLS has not been tested wtih SPNEGO");
-        }
         if (null != keytab) {
           LOG.debug("Performing Kerberos login with {} as {}", keytab, kerberosPrincipal);
           subject = loginViaKerberos(this);

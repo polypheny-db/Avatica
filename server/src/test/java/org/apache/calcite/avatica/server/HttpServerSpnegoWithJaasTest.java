@@ -45,7 +45,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.security.PrivilegedExceptionAction;
 import java.util.Set;
-
 import javax.security.auth.Subject;
 import javax.security.auth.kerberos.KerberosTicket;
 
@@ -82,7 +81,7 @@ public class HttpServerSpnegoWithJaasTest {
 
   @BeforeClass public static void setupKdc() throws Exception {
     kdc = new SimpleKdcServer();
-    File target = new File(System.getProperty("user.dir"), "target");
+    File target = SpnegoTestUtil.TARGET_DIR;
     assertTrue(target.exists());
 
     File kdcDir = new File(target, HttpServerSpnegoWithJaasTest.class.getSimpleName());
