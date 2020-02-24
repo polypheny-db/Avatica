@@ -41,7 +41,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.AccessController;
 import java.security.Principal;
 import java.security.PrivilegedAction;
-
 import javax.security.auth.login.Configuration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +57,9 @@ public class SpnegoTestUtil {
   public static final String KDC_HOST = "localhost";
   public static final String CLIENT_PRINCIPAL = "client@" + REALM;
   public static final String SERVER_PRINCIPAL = "HTTP/" + KDC_HOST + "@" + REALM;
+
+  private static final String TARGET_DIR_NAME = System.getProperty("target.dir", "target");
+  public static final File TARGET_DIR = new File(System.getProperty("user.dir"), TARGET_DIR_NAME);
 
   private SpnegoTestUtil() {}
 

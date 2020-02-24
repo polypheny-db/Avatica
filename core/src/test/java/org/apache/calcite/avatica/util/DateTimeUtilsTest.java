@@ -34,7 +34,9 @@ import static org.apache.calcite.avatica.util.DateTimeUtils.intervalYearMonthToS
 import static org.apache.calcite.avatica.util.DateTimeUtils.subtractMonths;
 import static org.apache.calcite.avatica.util.DateTimeUtils.timeStringToUnixDate;
 import static org.apache.calcite.avatica.util.DateTimeUtils.timestampStringToUnixDate;
+import static org.apache.calcite.avatica.util.DateTimeUtils.unixDateCeil;
 import static org.apache.calcite.avatica.util.DateTimeUtils.unixDateExtract;
+import static org.apache.calcite.avatica.util.DateTimeUtils.unixDateFloor;
 import static org.apache.calcite.avatica.util.DateTimeUtils.unixDateToString;
 import static org.apache.calcite.avatica.util.DateTimeUtils.unixTimeExtract;
 import static org.apache.calcite.avatica.util.DateTimeUtils.unixTimeToString;
@@ -898,6 +900,48 @@ public class DateTimeUtilsTest {
     assertThat(pt2, notNullValue());
     assertThat(pt2.getCalendar().get(Calendar.MILLISECOND), is(60));
     assertThat(pt2.getFraction(), is("06"));
+  }
+
+  @Test public void testUnixDateFloorCeil() {
+    final long y1900 = -(70 * 365 + 70 / 4);
+    final long y1900_0102 = y1900 + 1;
+    final long y1899 = y1900 - 365;
+    final long y1901 = y1900 + 365;
+    final long y1900_0506 = y1900 - 1 + 31 + 28 + 31 + 30 + 6; // sunday
+    final long y1900_0512 = y1900 - 1 + 31 + 28 + 31 + 30 + 12; // saturday
+    final long y1900_0513 = y1900 - 1 + 31 + 28 + 31 + 30 + 13; // sunday
+    final long y1900_0514 = y1900 - 1 + 31 + 28 + 31 + 30 + 14; // monday
+    final long y1900_0520 = y1900 - 1 + 31 + 28 + 31 + 30 + 20; // sunday
+    final long y1900_0401 = y1900 - 1 + 31 + 28 + 31 + 1;
+    final long y1900_0501 = y1900 - 1 + 31 + 28 + 31 + 30 + 1;
+    final long y1900_0601 = y1900 - 1 + 31 + 28 + 31 + 30 + 31 + 1;
+    final long y1900_0701 = y1900 - 1 + 31 + 28 + 31 + 30 + 31 + 30 + 1;
+    final long y1900_1001 = y1900 - 1 + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 1;
+    final long y1900_1002 = y1900 - 1 + 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 2;
+    checkDateString("1900-01-01", (int) y1900);
+    checkDateString("1900-01-02", (int) y1900_0102);
+    checkDateString("1899-01-01", (int) y1899);
+    checkDateString("1901-01-01", (int) y1901);
+    assertThat(unixDateFloor(TimeUnitRange.YEAR, y1900_0102), is(y1900));
+    assertThat(unixDateCeil(TimeUnitRange.YEAR, y1900_0102), is(y1901));
+    assertThat(unixDateFloor(TimeUnitRange.QUARTER, y1900_0514), is(y1900_0401));
+    assertThat(unixDateCeil(TimeUnitRange.QUARTER, y1900_0514), is(y1900_0701));
+    assertThat(unixDateFloor(TimeUnitRange.QUARTER, y1900_1001), is(y1900_1001));
+    assertThat(unixDateCeil(TimeUnitRange.QUARTER, y1900_1001), is(y1900_1001));
+    assertThat(unixDateFloor(TimeUnitRange.QUARTER, y1900_1002), is(y1900_1001));
+    assertThat(unixDateCeil(TimeUnitRange.QUARTER, y1900_1002), is(y1901));
+    assertThat(unixDateFloor(TimeUnitRange.MONTH, y1900_0514), is(y1900_0501));
+    assertThat(unixDateCeil(TimeUnitRange.MONTH, y1900_0514), is(y1900_0601));
+    assertThat(unixDateFloor(TimeUnitRange.WEEK, y1900_0514), is(y1900_0513));
+    assertThat(unixDateCeil(TimeUnitRange.WEEK, y1900_0514), is(y1900_0520));
+    assertThat(unixDateFloor(TimeUnitRange.WEEK, y1900_0514), is(y1900_0513));
+    assertThat(unixDateCeil(TimeUnitRange.WEEK, y1900_0514), is(y1900_0520));
+    assertThat(unixDateFloor(TimeUnitRange.WEEK, y1900_0513), is(y1900_0513));
+    assertThat(unixDateCeil(TimeUnitRange.WEEK, y1900_0513), is(y1900_0513));
+    assertThat(unixDateFloor(TimeUnitRange.WEEK, y1900_0512), is(y1900_0506));
+    assertThat(unixDateCeil(TimeUnitRange.WEEK, y1900_0512), is(y1900_0513));
+    assertThat(unixDateFloor(TimeUnitRange.DAY, y1900_0514), is(y1900_0514));
+    assertThat(unixDateCeil(TimeUnitRange.DAY, y1900_0514), is(y1900_0514));
   }
 }
 
