@@ -192,6 +192,7 @@ allprojects {
                 // See https://github.com/diffplug/spotless/issues/468
                 format("markdown") {
                     target("**/*.md")
+                    targetExclude("?/**") // do not check markdown files in Jenkins "?" directory
                     // Flot is known to have trailing whitespace, so the files
                     // are kept in their original format (e.g. to simplify diff on library upgrade)
                     trimTrailingWhitespace()
