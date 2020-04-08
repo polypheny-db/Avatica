@@ -1197,15 +1197,30 @@ public interface Meta {
 
   /** Connection handle. */
   class ConnectionHandle {
+
     public final String id;
+
 
     @Override public String toString() {
       return id;
     }
 
+
     @JsonCreator
     public ConnectionHandle(@JsonProperty("id") String id) {
       this.id = id;
+    }
+
+
+    @Override public int hashCode() {
+      return Objects.hash(id);
+    }
+
+
+    @Override public boolean equals(Object o) {
+      return o == this
+          || o instanceof ConnectionHandle
+          && Objects.equals(id, ((ConnectionHandle) o).id);
     }
   }
 
