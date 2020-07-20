@@ -27,7 +27,7 @@ import java.sql.Statement;
 public class StatementInfo {
   private volatile Boolean relativeSupported = null;
 
-  final Statement statement; // sometimes a PreparedStatement
+  public final Statement statement; // sometimes a PreparedStatement
   private ResultSet resultSet;
   private long position = 0;
 

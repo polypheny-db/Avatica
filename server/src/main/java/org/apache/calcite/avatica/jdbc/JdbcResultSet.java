@@ -47,7 +47,7 @@ import java.util.TreeMap;
  * upon a JDBC {@link java.sql.ResultSet}.
  *
  * @see org.apache.calcite.avatica.jdbc.JdbcMeta */
-class JdbcResultSet extends Meta.MetaResultSet {
+public class JdbcResultSet extends Meta.MetaResultSet {
   protected JdbcResultSet(String connectionId, int statementId,
       boolean ownStatement, Meta.Signature signature, Meta.Frame firstFrame) {
     this(connectionId, statementId, ownStatement, signature, firstFrame, -1L);
