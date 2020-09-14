@@ -22,7 +22,11 @@ import com.github.vlsi.gradle.git.dsl.gitignore
 import com.github.vlsi.gradle.properties.dsl.lastEditYear
 import com.github.vlsi.gradle.properties.dsl.props
 import com.github.vlsi.gradle.properties.dsl.toBool
+import com.github.vlsi.gradle.publishing.dsl.extraMavenPublications
+import com.github.vlsi.gradle.publishing.dsl.simplifyXml
+import com.github.vlsi.gradle.publishing.dsl.versionFromResolution
 import com.github.vlsi.gradle.release.RepositoryType
+import com.github.vlsi.gradle.test.dsl.printTestResults
 import de.thetaphi.forbiddenapis.gradle.CheckForbiddenApis
 import de.thetaphi.forbiddenapis.gradle.CheckForbiddenApisExtension
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
@@ -31,7 +35,7 @@ plugins {
     publishing
     // Verification
     checkstyle
-    id("com.diffplug.gradle.spotless")
+    id("com.github.autostyle")
     id("org.nosphere.apache.rat")
     id("com.github.spotbugs")
     id("de.thetaphi.forbiddenapis") apply false
@@ -59,15 +63,11 @@ val lastEditYear by extra(lastEditYear())
 // Do not enable spotbugs by default. Execute it only when -Pspotbugs is present
 val enableSpotBugs = props.bool("spotbugs", default = false)
 val skipCheckstyle by props()
-val skipSpotless by props()
+val skipAutostyle by props()
 val skipJavadoc by props()
-val skipSigning by props(props.bool("skipSign"))
+// Inherited from stage-vote-release-plugin: skipSign, useGpgCmd
 val enableMavenLocal by props()
 val enableGradleMetadata by props()
-
-// By default use Java implementation to sign artifacts
-// When useGpgCmd=true, then gpg command line tool is used for signing
-val useGpgCmd by props()
 
 ide {
     copyrightToAsf()
@@ -87,6 +87,7 @@ val gitProps by tasks.registering(FindGitAttributes::class) {
 
 val rat by tasks.getting(org.nosphere.apache.rat.RatTask::class) {
     gitignore(gitProps)
+    verbose.set(true)
     // Note: patterns are in non-standard syntax for RAT, so we use exclude(..) instead of excludeFile
     exclude(rootDir.resolve(".ratignore").readLines())
 }
@@ -132,12 +133,6 @@ releaseParams {
             })
         }
     }
-    validateBeforeBuildingReleaseArtifacts += Runnable {
-        if (useGpgCmd && findProperty("signing.gnupg.keyName") == null) {
-            throw GradleException("Please specify signing key id via signing.gnupg.keyName " +
-                    "(see https://github.com/gradle/gradle/issues/8657)")
-        }
-    }
 }
 
 val javadocAggregate by tasks.registering(Javadoc::class) {
@@ -167,37 +162,55 @@ val javadocAggregateIncludingTests by tasks.registering(Javadoc::class) {
     setDestinationDir(file("$buildDir/docs/javadocAggregateIncludingTests"))
 }
 
-val licenseHeaderFile = file("config/license.header.java")
-
 allprojects {
     group = "org.apache.calcite.avatica"
     version = buildVersion
+
+    repositories {
+        // RAT and Autostyle dependencies
+        mavenCentral()
+    }
 
     plugins.withId("java-library") {
         dependencies {
             "implementation"(platform(project(":bom")))
         }
     }
-    if (!skipSpotless) {
-        apply(plugin = "com.diffplug.gradle.spotless")
-        spotless {
-            kotlinGradle {
-                ktlint()
+    if (!skipAutostyle) {
+        apply(plugin = "com.github.autostyle")
+        autostyle {
+            fun com.github.autostyle.gradle.BaseFormatExtension.license() {
+                // Exclude Jenkins' "?" directory
+                filter.exclude("?/**")
+                licenseHeader(rootProject.ide.licenseHeader)
                 trimTrailingWhitespace()
                 endWithNewline()
             }
-            if (project == rootProject) {
-                // Spotless does not exclude subprojects when using target(...)
-                // So **/*.md is enough to scan all the md files in the codebase
-                // See https://github.com/diffplug/spotless/issues/468
-                format("markdown") {
-                    target("**/*.md")
-                    targetExclude("?/**") // do not check markdown files in Jenkins "?" directory
-                    // Flot is known to have trailing whitespace, so the files
-                    // are kept in their original format (e.g. to simplify diff on library upgrade)
-                    trimTrailingWhitespace()
-                    endWithNewline()
+            kotlinGradle {
+                // Exclude Jenkins' "?" directory
+                filter.exclude("?/**")
+                license()
+                ktlint()
+            }
+            format("configs") {
+                filter {
+                    include("**/*.sh", "**/*.bsh", "**/*.cmd", "**/*.bat")
+                    include("**/*.properties", "**/*.yml")
+                    include("**/*.xsd", "**/*.xsl", "**/*.xml")
+                    // Autostyle does not support gitignore yet https://github.com/autostyle/autostyle/issues/13
+                    exclude("bin/**", "out/**", "gradlew*")
+                    // Exclude Jenkins' "?" directory
+                    exclude("?/**")
                 }
+                license()
+            }
+            format("markdown") {
+                filter {
+                    include("**/*.md")
+                    // Exclude Jenkins' "?" directory
+                    exclude("?/**")
+                }
+                endWithNewline()
             }
         }
     }
@@ -212,8 +225,9 @@ allprojects {
             // https://github.com/julianhyde/toolbox/issues/3
             //  toolVersion = "6.18"
             isShowViolations = true
-            configDir = File(rootDir, "src/main/config/checkstyle")
-            configFile = File(configDir, "checker.xml")
+            val dir = File(rootDir, "src/main/config/checkstyle")
+            configDirectory.set(dir)
+            configFile = File(dir, "checker.xml")
             configProperties = mapOf(
                 "checkstyle.header.file" to "$rootDir/src/main/config/checkstyle/header.txt",
                 "checkstyle.suppressions.file" to "$rootDir/src/main/config/checkstyle/suppressions.xml"
@@ -227,20 +241,6 @@ allprojects {
         isReproducibleFileOrder = true
         dirMode = "775".toInt(8)
         fileMode = "664".toInt(8)
-    }
-
-    plugins.withType<SigningPlugin> {
-        afterEvaluate {
-            configure<SigningExtension> {
-                val release = rootProject.releaseParams.release.get()
-                // Note it would still try to sign the artifacts,
-                // however it would fail only when signing a RELEASE version fails
-                isRequired = release
-                if (useGpgCmd) {
-                    useGpgCmd()
-                }
-            }
-        }
     }
 
     tasks {
@@ -271,17 +271,6 @@ allprojects {
         }
     }
 
-    if (!isReleaseVersion || skipSigning) {
-        plugins.withType<SigningPlugin> {
-            afterEvaluate {
-                configure<SigningExtension> {
-                    // It would still try to sign the artifacts,
-                    // but it would refrain from failing the build
-                    isRequired = false
-                }
-            }
-        }
-    }
     plugins.withType<JavaPlugin> {
         configure<JavaPluginConvention> {
             sourceCompatibility = JavaVersion.VERSION_1_8
@@ -296,7 +285,6 @@ allprojects {
         }
         val sourceSets: SourceSetContainer by project
 
-        apply(plugin = "signing")
         apply(plugin = "de.thetaphi.forbiddenapis")
         apply(plugin = "maven-publish")
 
@@ -306,17 +294,12 @@ allprojects {
             }
         }
 
-        if (isReleaseVersion && !skipSigning) {
-            configure<SigningExtension> {
-                // Sign all the publications
-                sign(publishing.publications)
-            }
-        }
-
-        if (!skipSpotless) {
-            spotless {
+        if (!skipAutostyle) {
+            autostyle {
                 java {
-                    licenseHeaderFile(licenseHeaderFile)
+                    // Exclude Jenkins' "?" directory
+                    filter.exclude("?/**")
+                    licenseHeader(rootProject.ide.licenseHeader)
                     importOrder(
                         "org.apache.calcite.",
                         "org.apache.",
@@ -336,6 +319,7 @@ allprojects {
                         "static java",
                         "static "
                     )
+                    replaceRegex("side by side comments", "(\n\\s*+[*]*+/\n)(/[/*])", "\$1\n\$2")
                     removeUnusedImports()
                     trimTrailingWhitespace()
                     indentWithSpaces(2)
@@ -353,8 +337,7 @@ allprojects {
                 this.sourceSets = listOf(sourceSets["main"])
             }
             dependencies {
-                // Parenthesis are needed here: https://github.com/gradle/gradle/issues/9248
-                (constraints) {
+                constraints {
                     "spotbugs"("org.ow2.asm:asm:${"asm".v}")
                     "spotbugs"("org.ow2.asm:asm-all:${"asm".v}")
                     "spotbugs"("org.ow2.asm:asm-analysis:${"asm".v}")
@@ -429,6 +412,7 @@ allprojects {
                         passProperty(e)
                     }
                 }
+                printTestResults()
             }
             withType<SpotBugsTask>().configureEach {
                 group = LifecycleBasePlugin.VERIFICATION_GROUP
@@ -509,6 +493,7 @@ allprojects {
                 // Do not publish "root" project. Java plugin is applied here for DSL purposes only
                 return@configure
             }
+            extraMavenPublications()
             publications {
                 create<MavenPublication>(project.name) {
                     artifactId = archivesBaseName
@@ -523,36 +508,9 @@ allprojects {
                         artifact(javadocJar.get())
                     }
 
-                    // Use the resolved versions in pom.xml
-                    // Gradle might have different resolution rules, so we set the versions
-                    // that were used in Gradle build/test.
-                    versionMapping {
-                        usage(Usage.JAVA_RUNTIME) {
-                            fromResolutionResult()
-                        }
-                        usage(Usage.JAVA_API) {
-                            fromResolutionOf("runtimeClasspath")
-                        }
-                    }
+                    versionFromResolution()
                     pom {
-                        withXml {
-                            val sb = asString()
-                            var s = sb.toString()
-                            // <scope>compile</scope> is Maven default, so delete it
-                            s = s.replace("<scope>compile</scope>", "")
-                            // Cut <dependencyManagement> because all dependencies have the resolved versions
-                            s = s.replace(
-                                Regex(
-                                    "<dependencyManagement>.*?</dependencyManagement>",
-                                    RegexOption.DOT_MATCHES_ALL
-                                ),
-                                ""
-                            )
-                            sb.setLength(0)
-                            sb.append(s)
-                            // Re-format the XML
-                            asNode()
-                        }
+                        simplifyXml()
                         project.property("artifact.name")?.let { name.set(it as String) }
                         description.set(project.description)
                         inceptionYear.set("2012")

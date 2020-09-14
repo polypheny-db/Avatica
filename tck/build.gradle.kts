@@ -55,7 +55,7 @@ dependencies {
 
 tasks {
     val getLicenses by registering(GatherLicenseTask::class) {
-        similarityThreshold.set(42*2)
+        similarityThreshold.set(42 * 2)
         configuration(shaded)
         extraLicenseDir.set(file("$rootDir/src/main/config/licenses"))
         overrideLicense("org.hsqldb:hsqldb") {
@@ -80,7 +80,7 @@ tasks {
     val licenseFiles = licensesCopySpec(license)
 
     shadowJar {
-        archiveClassifier.set("")
+        archiveClassifier.set("shadow")
         configurations = listOf(shaded)
         exclude("META-INF/maven/**")
         exclude("META-INF/LICENSE*")
@@ -111,5 +111,13 @@ tasks {
     jar {
         enabled = false
         dependsOn(shadowJar)
+    }
+}
+
+val extraMavenPublications by configurations.getting
+
+(artifacts) {
+    extraMavenPublications(tasks.shadowJar) {
+        classifier = ""
     }
 }

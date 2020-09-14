@@ -1,3 +1,4 @@
+#
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -12,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+#
 version: '3'
 services:
   dev:
@@ -28,7 +29,7 @@ services:
     volumes:
       - .:/srv/jekyll
   generate-javadoc:
-    image: gradle:6.0
+    image: gradle:6.3
     working_dir: /usr/src/calcite-avatica
     command: sh -c "gradle javadocAggregate; rm -rf site/target/avatica/javadocAggregate; mkdir -p site/target/avatica; mv build/docs/javadocAggregate site/target/avatica"
     volumes:

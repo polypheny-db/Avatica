@@ -14,9 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-distributionBase=GRADLE_USER_HOME
-distributionPath=wrapper/dists
-distributionSha256Sum=0f316a67b971b7b571dac7215dcf2591a30994b3450e0629925ffcfe2c68cc5c
-distributionUrl=https\://services.gradle.org/distributions/gradle-6.3-all.zip
-zipStoreBase=GRADLE_USER_HOME
-zipStorePath=wrapper/dists
+name: "Validate Gradle Wrapper"
+on: [push, pull_request]
+
+jobs:
+  validation:
+    name: "Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1
