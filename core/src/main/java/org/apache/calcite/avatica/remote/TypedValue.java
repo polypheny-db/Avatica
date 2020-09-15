@@ -540,6 +540,9 @@ public class TypedValue {
         Common.TypedValue.Builder elementBuilder = Common.TypedValue.newBuilder();
         if (null == element) {
           writeToProtoWithType(elementBuilder, null, Common.Rep.NULL);
+        } else if (element instanceof TypedValue) {
+          writeToProtoWithType(elementBuilder,
+              ((TypedValue) element).value, protoArrayComponentRep);
         } else {
           writeToProtoWithType(elementBuilder, element, protoArrayComponentRep);
         }

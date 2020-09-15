@@ -20,6 +20,7 @@ import org.apache.calcite.avatica.AvaticaParameter;
 import org.apache.calcite.avatica.AvaticaPreparedStatement;
 import org.apache.calcite.avatica.AvaticaUtils;
 import org.apache.calcite.avatica.ColumnMetaData;
+import org.apache.calcite.avatica.ColumnMetaData.Rep;
 import org.apache.calcite.avatica.ConnectionPropertiesImpl;
 import org.apache.calcite.avatica.Meta;
 import org.apache.calcite.avatica.MetaImpl;
@@ -47,6 +48,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -861,7 +863,11 @@ public class JdbcMeta implements ProtobufMeta {
       if (parameterValues != null) {
         for (int i = 0; i < parameterValues.size(); i++) {
           TypedValue o = parameterValues.get(i);
-          preparedStatement.setObject(i + 1, o.toJdbc(calendar));
+          if (o.type == Rep.ARRAY) {
+            preparedStatement.setArray(i + 1, (Array) o.toJdbc(calendar));
+          } else {
+            preparedStatement.setObject(i + 1, o.toJdbc(calendar));
+          }
         }
       }
 
