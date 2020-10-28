@@ -491,18 +491,40 @@ public class JdbcMeta implements ProtobufMeta {
 
   public MetaResultSet getImportedKeys(ConnectionHandle ch, String catalog, String schema,
       String table) {
-    return null;
+    try {
+      final ResultSet rs =
+          getConnection(ch.id).getMetaData().getImportedKeys(catalog, schema, table);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getExportedKeys(ConnectionHandle ch, String catalog, String schema,
       String table) {
-    return null;
+    try {
+      final ResultSet rs =
+          getConnection(ch.id).getMetaData().getExportedKeys(catalog, schema, table);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getCrossReference(ConnectionHandle ch, String parentCatalog,
       String parentSchema, String parentTable, String foreignCatalog,
       String foreignSchema, String foreignTable) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getCrossReference(
+              parentCatalog, parentSchema, parentTable,
+              foreignCatalog, foreignSchema, foreignTable);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getTypeInfo(ConnectionHandle ch) {
@@ -517,46 +539,108 @@ public class JdbcMeta implements ProtobufMeta {
 
   public MetaResultSet getIndexInfo(ConnectionHandle ch, String catalog, String schema,
       String table, boolean unique, boolean approximate) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getIndexInfo(
+              catalog, schema, table, unique, approximate);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getUDTs(ConnectionHandle ch, String catalog, Pat schemaPattern,
       Pat typeNamePattern, int[] types) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getUDTs(
+              catalog, schemaPattern.s, typeNamePattern.s, types);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getSuperTypes(ConnectionHandle ch, String catalog, Pat schemaPattern,
       Pat typeNamePattern) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getSuperTypes(
+              catalog, schemaPattern.s, typeNamePattern.s);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getSuperTables(ConnectionHandle ch, String catalog, Pat schemaPattern,
       Pat tableNamePattern) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getSuperTables(
+              catalog, schemaPattern.s, tableNamePattern.s);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getAttributes(ConnectionHandle ch, String catalog, Pat schemaPattern,
       Pat typeNamePattern, Pat attributeNamePattern) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getAttributes(
+              catalog, schemaPattern.s, typeNamePattern.s, attributeNamePattern.s);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getClientInfoProperties(ConnectionHandle ch) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getClientInfoProperties();
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getFunctions(ConnectionHandle ch, String catalog, Pat schemaPattern,
       Pat functionNamePattern) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getFunctions(
+              catalog, schemaPattern.s, functionNamePattern.s);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getFunctionColumns(ConnectionHandle ch, String catalog, Pat schemaPattern,
       Pat functionNamePattern, Pat columnNamePattern) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getFunctionColumns(
+              catalog, schemaPattern.s, functionNamePattern.s, columnNamePattern.s);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public MetaResultSet getPseudoColumns(ConnectionHandle ch, String catalog, Pat schemaPattern,
       Pat tableNamePattern, Pat columnNamePattern) {
-    return null;
+    try {
+      final ResultSet rs = getConnection(ch.id).getMetaData().getPseudoColumns(
+              catalog, schemaPattern.s, tableNamePattern.s, columnNamePattern.s);
+      int stmtId = registerMetaStatement(rs);
+      return JdbcResultSet.create(ch.id, stmtId, rs);
+    } catch (SQLException e) {
+      throw propagate(e);
+    }
   }
 
   public Iterable<Object> createIterable(StatementHandle handle, QueryState state,
