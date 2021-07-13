@@ -495,6 +495,10 @@ public abstract class AbstractCursor implements Cursor {
         return 0;
       } else if (obj instanceof Integer) {
         return ((Integer) obj).byteValue();
+      } else if (obj instanceof Short) {
+        return ((Short) obj).byteValue();
+      } else if (obj instanceof Long) {
+        return ((Long) obj).byteValue();
       }
       return (Byte) obj;
     }
