@@ -530,7 +530,7 @@ allprojects {
                     name = "DBIS_Nexus"
                     val releasesRepoUrl = "https://dbis-nexus.dmi.unibas.ch/repository/maven-releases/"
                     val snapshotsRepoUrl = "https://dbis-nexus.dmi.unibas.ch/repository/maven-snapshots/"
-                    url =  uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+                    url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
                     credentials {
                         username = System.getenv("DBIS_NEXUS_USERNAME")
                         password = System.getenv("DBIS_NEXUS_PASSWORD")
