@@ -98,9 +98,10 @@ tasks.validateBeforeBuildingReleaseArtifacts {
 
 val String.v: String get() = rootProject.extra["$this.version"] as String
 
-val buildVersion = "calcite.avatica".v + releaseParams.snapshotSuffix
+// val buildVersion = "calcite.avatica".v + releaseParams.snapshotSuffix
+val buildVersion = "calcite.avatica".v
 
-println("Building Apache Calcite Avatica $buildVersion")
+println("Building Avatica for Polypheny $buildVersion")
 
 val isReleaseVersion = rootProject.releaseParams.release.get()
 
@@ -110,27 +111,18 @@ releaseArtifacts {
 
 // Configures URLs to SVN and Nexus
 releaseParams {
-    tlp.set("Calcite")
-    gitRepoName.set("calcite-avatica")
-    componentName.set("Apache Calcite Avatica")
+    tlp.set("Polypheny")
+    gitRepoName.set("avatica")
+    componentName.set("Avatica for Polypheny")
     releaseTag.set("rel/avatica-$buildVersion")
     rcTag.set(rc.map { "avatica-$buildVersion-rc$it" })
     sitePreviewEnabled.set(false)
     nexus {
         // https://github.com/marcphilipp/nexus-publish-plugin/issues/35
-        packageGroup.set("org.apache.calcite")
+        packageGroup.set("org.polypheny")
         if (repositoryType.get() == RepositoryType.PROD) {
             // org.apache.calcite at repository.apache.org
-            stagingProfileId.set("778fd0d4358bb")
-        }
-    }
-    svnDist {
-        staleRemovalFilters {
-            includes.add(Regex(".*apache-calcite-avatica-\\d.*"))
-            validates.empty()
-            validates.add(provider {
-                Regex("release/calcite/apache-calcite-avatica-${version.toString().removeSuffix("-SNAPSHOT")}")
-            })
+            // stagingProfileId.set("778fd0d4358bb")
         }
     }
 }
@@ -163,7 +155,7 @@ val javadocAggregateIncludingTests by tasks.registering(Javadoc::class) {
 }
 
 allprojects {
-    group = "org.apache.calcite.avatica"
+    group = "org.polypheny"
     version = buildVersion
 
     repositories {
@@ -256,11 +248,10 @@ allprojects {
                 docEncoding = "UTF-8"
                 charSet = "UTF-8"
                 encoding = "UTF-8"
-                docTitle = "Apache Calcite Avatica ${project.name} API"
-                windowTitle = "Apache Calcite Avatica ${project.name} API"
-                header = "<b>Apache Calcite Avatica</b>"
-                bottom =
-                    "Copyright &copy; 2012-$lastEditYear Apache Software Foundation. All Rights Reserved."
+                docTitle = "Avatica for Polypheny ${project.name} API"
+                windowTitle = "Avatica for Polypheny ${project.name} API"
+                header = "<b>Avatica for Polypheny</b>"
+                bottom = "Copyright &copy; 2012-$lastEditYear Apache Software Foundation. All Rights Reserved.<br>Copyright &copy; 2019-$lastEditYear The Polypheny Project"
                 if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
                     addBooleanOption("html5", true)
                     links("https://docs.oracle.com/javase/9/docs/api/")
@@ -373,13 +364,13 @@ allprojects {
             withType<Jar>().configureEach {
                 manifest {
                     attributes["Bundle-License"] = "Apache-2.0"
-                    attributes["Implementation-Title"] = "Apache Calcite Avatica"
+                    attributes["Implementation-Title"] = "Avatica for Polypheny"
                     attributes["Implementation-Version"] = project.version
-                    attributes["Specification-Vendor"] = "The Apache Software Foundation"
+                    attributes["Specification-Vendor"] = "The Polypheny Project"
                     attributes["Specification-Version"] = project.version
-                    attributes["Specification-Title"] = "Apache Calcite Avatica"
-                    attributes["Implementation-Vendor"] = "Apache Software Foundation"
-                    attributes["Implementation-Vendor-Id"] = "org.apache.calcite.avatica"
+                    attributes["Specification-Title"] = "Avatica for Polypheny"
+                    attributes["Implementation-Vendor"] = "The Polypheny Project"
+                    attributes["Implementation-Vendor-Id"] = "org.polypheny.avatica"
                 }
             }
 
@@ -512,9 +503,9 @@ allprojects {
                     pom {
                         simplifyXml()
                         project.property("artifact.name")?.let { name.set(it as String) }
-                        description.set(project.description)
+                        description.set("Fork of Apache Calcite Avatica with Polypheny-DB specific adjustments.")
                         inceptionYear.set("2012")
-                        url.set("https://calcite.apache.org/avatica")
+                        url.set("https://polypheny.org/")
                         licenses {
                             license {
                                 name.set("The Apache License, Version 2.0")
@@ -524,23 +515,12 @@ allprojects {
                             }
                         }
                         issueManagement {
-                            system.set("Jira")
-                            url.set("https://issues.apache.org/jira/browse/CALCITE")
-                        }
-                        mailingLists {
-                            mailingList {
-                                name.set("Apache Calcite developers list")
-                                subscribe.set("dev-subscribe@calcite.apache.org")
-                                unsubscribe.set("dev-unsubscribe@calcite.apache.org")
-                                post.set("dev@calcite.apache.org")
-                                archive.set("https://lists.apache.org/list.html?dev@calcite.apache.org")
-                            }
+                            system.set("GitHub")
+                            url.set("https://github.com/polypheny/Polypheny-DB/issues")
                         }
                         scm {
-                            connection.set("scm:git:https://gitbox.apache.org/repos/asf/calcite-avatica.git")
-                            developerConnection.set("scm:git:https://gitbox.apache.org/repos/asf/calcite-avatica.git")
-                            url.set("https://github.com/apache/calcite-avatica")
-                            tag.set("HEAD")
+                            connection.set("scm:git:https://github.com/polypheny/Avatica.git")
+                            url.set("https://github.com/polypheny/Avatica")
                         }
                     }
                 }
