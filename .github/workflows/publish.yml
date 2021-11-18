@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-name: Publish package to the Maven Central Repository and GitHub Packages
+name: Publish package to GitHub Packages
 on:
     push:
 jobs:
