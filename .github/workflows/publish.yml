@@ -14,11 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-name: Publish package to GitHub Packages
+name: Publish package to GitHub Packages and DBIS Nexus
 on:
     push:
+        branches:
+            - polypheny
 jobs:
     publish:
+        if: ${{ github.repository_owner == 'polypheny' }}
         runs-on: ubuntu-latest
         permissions:
             contents: read
@@ -38,3 +41,5 @@ jobs:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                     ORG_GRADLE_PROJECT_signingKey: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
                     ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+                    DBIS_NEXUS_USERNAME: ${{ secrets.DBIS_NEXUS_USERNAME }}
+                    DBIS_NEXUS_PASSWORD: ${{ secrets.DBIS_NEXUS_PASSWORD }}
