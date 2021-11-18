@@ -22,10 +22,8 @@ import com.github.vlsi.gradle.git.dsl.gitignore
 import com.github.vlsi.gradle.properties.dsl.lastEditYear
 import com.github.vlsi.gradle.properties.dsl.props
 import com.github.vlsi.gradle.properties.dsl.toBool
-import com.github.vlsi.gradle.publishing.dsl.extraMavenPublications
 import com.github.vlsi.gradle.publishing.dsl.simplifyXml
 import com.github.vlsi.gradle.publishing.dsl.versionFromResolution
-import com.github.vlsi.gradle.release.RepositoryType
 import com.github.vlsi.gradle.test.dsl.printTestResults
 import de.thetaphi.forbiddenapis.gradle.CheckForbiddenApis
 import de.thetaphi.forbiddenapis.gradle.CheckForbiddenApisExtension
@@ -48,7 +46,7 @@ plugins {
     id("com.github.vlsi.crlf")
     id("com.github.vlsi.gradle-extensions")
     id("com.github.vlsi.license-gather") apply false
-    id("com.github.vlsi.stage-vote-release")
+    signing
 }
 
 repositories {
@@ -92,40 +90,12 @@ val rat by tasks.getting(org.nosphere.apache.rat.RatTask::class) {
     exclude(rootDir.resolve(".ratignore").readLines())
 }
 
-tasks.validateBeforeBuildingReleaseArtifacts {
-    dependsOn(rat)
-}
-
 val String.v: String get() = rootProject.extra["$this.version"] as String
 
 // val buildVersion = "calcite.avatica".v + releaseParams.snapshotSuffix
 val buildVersion = "calcite.avatica".v
 
 println("Building Avatica for Polypheny $buildVersion")
-
-val isReleaseVersion = rootProject.releaseParams.release.get()
-
-releaseArtifacts {
-    fromProject(":release")
-}
-
-// Configures URLs to SVN and Nexus
-releaseParams {
-    tlp.set("Polypheny")
-    gitRepoName.set("avatica")
-    componentName.set("Avatica for Polypheny")
-    releaseTag.set("rel/avatica-$buildVersion")
-    rcTag.set(rc.map { "avatica-$buildVersion-rc$it" })
-    sitePreviewEnabled.set(false)
-    nexus {
-        // https://github.com/marcphilipp/nexus-publish-plugin/issues/35
-        packageGroup.set("org.polypheny")
-        if (repositoryType.get() == RepositoryType.PROD) {
-            // org.apache.calcite at repository.apache.org
-            // stagingProfileId.set("778fd0d4358bb")
-        }
-    }
-}
 
 val javadocAggregate by tasks.registering(Javadoc::class) {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
@@ -155,7 +125,7 @@ val javadocAggregateIncludingTests by tasks.registering(Javadoc::class) {
 }
 
 allprojects {
-    group = "org.polypheny"
+    group = "org.polypheny.avatica"
     version = buildVersion
 
     repositories {
@@ -479,12 +449,17 @@ allprojects {
         }
         setProperty("archivesBaseName", archivesBaseName)
 
-        configure<PublishingExtension> {
-            if (project.path == ":") {
-                // Do not publish "root" project. Java plugin is applied here for DSL purposes only
-                return@configure
-            }
-            extraMavenPublications()
+        /*signing {
+            setRequired({
+                gradle.taskGraph.hasTask("publish")
+            })
+            val signingKey: String? by project
+            val signingPassword: String? by project
+            useInMemoryPgpKeys(signingKey, signingPassword)
+            sign(publishing.publications["mavenJava"])
+        }*/
+
+        publishing {
             publications {
                 create<MavenPublication>(project.name) {
                     artifactId = archivesBaseName
@@ -522,6 +497,33 @@ allprojects {
                             connection.set("scm:git:https://github.com/polypheny/Avatica.git")
                             url.set("https://github.com/polypheny/Avatica")
                         }
+                        developers {
+                            developer {
+                                id.set("polypheny")
+                                name.set("Polypheny")
+                                email.set("mail@polypheny.org")
+                            }
+                        }
+                    }
+                }
+            }
+            repositories {
+                /*maven {
+                    name = "OSSRH"
+                    val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                    url =  uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+                    credentials {
+                        username = System.getenv("MAVEN_USERNAME")
+                        password = System.getenv("MAVEN_PASSWORD")
+                    }
+                }*/
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/polypheny/avatica")
+                    credentials {
+                        username = System.getenv("GITHUB_ACTOR")
+                        password = System.getenv("GITHUB_TOKEN")
                     }
                 }
             }

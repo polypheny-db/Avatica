@@ -42,20 +42,20 @@ rootProject.name = "avatica"
 include(
         "bom",
         "core",
-        "docker",
+    // "docker",
         "metrics",
-        "metrics-dropwizardmetrics",
+    // "metrics-dropwizardmetrics",
         "noop-driver",
-        "server",
-        "tck",
-        "standalone-server",
-        "shaded:avatica",
-        "release"
+        "server"
+    // "tck",
+    // "standalone-server",
+    // "shaded:avatica",
+    // "release"
         )
 
 // https://discuss.gradle.org/t/multi-module-project-with-sub-modules-with-same-name/31928
 // Gradle can't handle dependencies between projects with same name even at different full paths
-project(":shaded:avatica").projectDir = file("shaded/core")
+// project(":shaded:avatica").projectDir = file("shaded/core")
 
 // See https://github.com/gradle/gradle/issues/1348#issuecomment-284758705 and
 // https://github.com/gradle/gradle/issues/5321#issuecomment-387561204

@@ -27,10 +27,6 @@ import com.github.vlsi.gradle.release.ReleaseParams
 import com.github.vlsi.gradle.release.dsl.dependencyLicenses
 import com.github.vlsi.gradle.release.dsl.licensesCopySpec
 
-plugins {
-    id("com.github.vlsi.stage-vote-release")
-}
-
 rootProject.configure<ReleaseExtension> {
     voteText.set { it.voteTextGen() }
 }

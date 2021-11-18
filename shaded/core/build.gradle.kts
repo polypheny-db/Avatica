@@ -88,8 +88,8 @@ tasks {
     }
 }
 
-artifacts {
+/*artifacts {
     extraMavenPublications(tasks.shadowJar) {
         classifier = ""
     }
-}
+}*/

@@ -114,10 +114,10 @@ tasks {
     }
 }
 
-val extraMavenPublications by configurations.getting
+// val extraMavenPublications by configurations.getting
 
-(artifacts) {
+/*(artifacts) {
     extraMavenPublications(tasks.shadowJar) {
         classifier = ""
     }
-}
+}*/
